@@ -3,20 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Cart
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-<<<<<<< HEAD
-  - holdLayer
-=======
-  - Cart
->>>>>>> origin/main
+  - 
   - 
   - 
   - 

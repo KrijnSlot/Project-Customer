@@ -42,7 +42,26 @@ public class Accel : MonoBehaviour
     {
         if (onCart)
         {
-            rb.AddForce(transform.forward * thrust);
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb.AddForce(transform.forward * thrust);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.AddForce(transform.forward * -thrust);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0, horInput * 0.5f, 0);
+                Cam.camRotY += horInput * 0.5f;
+                Cam.clamp += horInput * 0.5f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, horInput * 0.5f, 0);
+                Cam.camRotY += horInput * 0.5f;
+                Cam.clamp += horInput * 0.5f;
+            }
         }
         else
         {
