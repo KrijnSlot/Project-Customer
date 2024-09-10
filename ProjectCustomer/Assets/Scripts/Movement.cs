@@ -9,7 +9,10 @@ public class Accel : MonoBehaviour
 {
     [SerializeField] FirstPersonCam Cam;
     Rigidbody rb;
-    public float thrust;
+
+    [SerializeField] float thrust;
+    [SerializeField] float Forwardthrust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,7 @@ public class Accel : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(transform.forward * thrust);
+            rb.AddForce(transform.forward * Forwardthrust);
         }
         if (Input.GetKey(KeyCode.S))
         {
