@@ -256,7 +256,9 @@ MonoBehaviour:
   Cart:
     serializedVersion: 2
     m_Bits: 64
+  onCart: 1
   thrust: 10
+  Forwardthrust: 0
 --- !u!54 &528070588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -808,6 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOrien: {fileID: 528070592}
+  move: {fileID: 528070587}
   mouseSenseX: 75
   mouseSenseY: 75
   camRotY: 0

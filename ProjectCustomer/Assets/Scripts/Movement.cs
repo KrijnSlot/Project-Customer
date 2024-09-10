@@ -11,7 +11,7 @@ public class Accel : MonoBehaviour
     [SerializeField] GameObject Shoppingcart;
     [SerializeField] Transform Player;
     [SerializeField] LayerMask Cart;
-    bool onCart = true;
+    public bool onCart = true;
     bool cartRay;
     Rigidbody rb;
 
@@ -73,7 +73,7 @@ public class Accel : MonoBehaviour
     public void Update()
     {
         Inputs();
-        if(exitTimer > 0)
+        if (exitTimer > 0)
         {
             exitTimer -= Time.deltaTime;
         }
@@ -88,6 +88,10 @@ public class Accel : MonoBehaviour
             {
                 Shoppingcart.transform.SetParent(Player);
                 Shoppingcart.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
+                Cam.transform.rotation = Player.transform.rotation;
+                Shoppingcart.transform.rotation = Player.transform.rotation;
+                Cam.camRotY = Cam.transform.rotation.y;
+                Cam.clamp = Cam.transform.rotation.y + 90;
                 onCart = true;
                 exitTimer = exitTime;
                 exiting = true;
