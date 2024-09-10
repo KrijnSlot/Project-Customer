@@ -251,6 +251,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 1966749952}
+  Shoppingcart: {fileID: 1070371199}
+  Player: {fileID: 528070592}
+  Cart:
+    serializedVersion: 2
+    m_Bits: 64
   thrust: 10
 --- !u!54 &528070588
 Rigidbody:
@@ -382,9 +387,9 @@ GameObject:
   - component: {fileID: 1070371202}
   - component: {fileID: 1070371201}
   - component: {fileID: 1070371204}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
