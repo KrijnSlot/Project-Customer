@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 971373596}
   m_Layer: 6
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 1494406673}
   - component: {fileID: 1494406672}
   - component: {fileID: 1494406671}
+  - component: {fileID: 1494406675}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -472,6 +473,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1555044595}
   m_LocalEulerAnglesHint: {x: 12.023, y: 0, z: 0}
+--- !u!114 &1494406675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494406670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5dc2aa5a23780e4f94d5f4ddc8f3238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1555044589}
+  holdPos: {fileID: 1501751036}
+  throwForce: 500
+  pickUpRange: 50
 --- !u!1 &1501751035
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +555,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 1494406671}
+  Shoppingcart: {fileID: 0}
+  Player: {fileID: 1555044595}
+  Cart:
+    serializedVersion: 2
+    m_Bits: 0
   thrust: 15
   Forwardthrust: 15
 --- !u!54 &1555044591
@@ -664,7 +686,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555044589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5dc2aa5a23780e4f94d5f4ddc8f3238, type: 3}
   m_Name: 
