@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Accel : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Accel : MonoBehaviour
     [SerializeField] GameObject Shoppingcart;
     [SerializeField] Transform Player;
     [SerializeField] LayerMask Cart;
+    [SerializeField] Transform holdPos;
+    [SerializeField] float rotate;
+    [SerializeField] float rotate2;
     public bool onCart = true;
     bool cartRay;
     Rigidbody rb;
@@ -21,6 +25,7 @@ public class Accel : MonoBehaviour
     Vector3 directionMoving;
     float horInput;
     float verInput;
+    float yRot;
 
     float exitTime = 1;
     float exitTimer;
@@ -44,23 +49,21 @@ public class Accel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(transform.forward * thrust);
+                rb.AddForce(Player.forward * thrust);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(transform.forward * -thrust);
+                rb.AddForce(Player.forward * -thrust);
             }
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(0, horInput * 0.5f, 0);
+                yRot += horInput * 0.5f;
                 Cam.camRotY += horInput * 0.5f;
-                Cam.clamp += horInput * 0.5f;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(0, horInput * 0.5f, 0);
+                yRot += horInput * 0.5f;
                 Cam.camRotY += horInput * 0.5f;
-                Cam.clamp += horInput * 0.5f;
             }
         }
         else
@@ -73,6 +76,8 @@ public class Accel : MonoBehaviour
     public void Update()
     {
         Inputs();
+        rotate = Player.rotation.eulerAngles.y;
+        rotate2 = yRot;
         if (exitTimer > 0)
         {
             exitTimer -= Time.deltaTime;
@@ -87,11 +92,10 @@ public class Accel : MonoBehaviour
             if (cartRay && !onCart)
             {
                 Shoppingcart.transform.SetParent(Player);
-                Shoppingcart.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
-                Cam.transform.rotation = Player.transform.rotation;
-                Shoppingcart.transform.rotation = Player.transform.rotation;
-                Cam.camRotY = Cam.transform.rotation.y;
-                Cam.clamp = Cam.transform.rotation.y + 90;
+                Shoppingcart.transform.position = holdPos.position;
+                Shoppingcart.transform.rotation = Quaternion.Euler(Player.rotation.x, Cam.camRotY, Player.rotation.z);
+                Player.rotation = Quaternion.Euler(0, Cam.camRotY, 0);
+                Cam.clamp = Cam.camRotY - 90;
                 onCart = true;
                 exitTimer = exitTime;
                 exiting = true;
@@ -101,6 +105,11 @@ public class Accel : MonoBehaviour
                 Shoppingcart.transform.SetParent(null);
                 onCart = false;
             }
+        }
+        if (onCart)
+        {
+            Player.transform.rotation = Quaternion.Euler(0, yRot, 0);
+            Cam.clamp = Player.rotation.eulerAngles.y - 90;
         }
     }
 
