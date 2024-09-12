@@ -9,7 +9,7 @@ public class PickUpScript : MonoBehaviour
 
     public float throwForce = 500f; 
     public float pickUpRange = 5f; 
-    private float rotationSensitivity = 1f;
+    private float rotationSensitivity = 3f;
     private GameObject heldObj; 
     private Rigidbody heldObjRb;
     private bool canDrop = true;
@@ -35,11 +35,9 @@ public class PickUpScript : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
-                    Debug.Log("hit");
                     //make sure pickup tag is attached
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {
-                        Debug.Log("canpickup");
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
                     }
