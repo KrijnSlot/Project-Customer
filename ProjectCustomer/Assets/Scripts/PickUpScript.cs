@@ -9,7 +9,7 @@ public class PickUpScript : MonoBehaviour
 
     public float throwForce = 500f; 
     public float pickUpRange = 5f; 
-    private float rotationSensitivity = 1f;
+    private float rotationSensitivity = 3f;
     private GameObject heldObj; 
     private Rigidbody heldObjRb;
     private bool canDrop = true;

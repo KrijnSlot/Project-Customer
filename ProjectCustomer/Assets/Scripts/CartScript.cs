@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CartScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    float originalY;
     void Start()
     {
-        
+        originalY = transform.position.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.position = new Vector3(transform.position.x, originalY, transform.position.z);
     }
 }
