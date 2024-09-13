@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class DetectionScript : MonoBehaviour
 {
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("canPickUp"))
+        if (other.gameObject.name == "soup")
         {
             Debug.Log("soup");
         }
+        if (other.gameObject.name == "Item")
+        {
+            Debug.Log("Item");
+        }
     }
-
 }
