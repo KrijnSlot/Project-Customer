@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class DetectionScript : MonoBehaviour
 {
+    [SerializeField] ShoppingList shopList;
+    public string itemName;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "soup")
-        {
-            Debug.Log("soup");
-        }
-        if (other.gameObject.name == "Item")
-        {
-            Debug.Log("Item");
-        }
+        itemName = other.gameObject.name;
+        Debug.Log(itemName + "Check1");
+        shopList.ItemCheck(itemName);
     }
 }
