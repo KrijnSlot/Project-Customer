@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ShoppingList : MonoBehaviour
 {
-    List<string> itemList = new List<string>();
+    public List<string> itemList = new List<string>();
+
+    private int indexCheck = 1;
     private void Start()
     {
         itemList.Add("soup");
@@ -14,12 +16,16 @@ public class ShoppingList : MonoBehaviour
     public void ItemCheck(string itemName)
     {
         Debug.Log(itemName + " " + "Check2");
-        foreach (var item in itemList)
+        for(int i=0; i < itemList.Count; i++)
         {
-            if (item == itemName)
+            if (itemList[i] == itemName)
             {
-                Debug.Log(item + " " + "has been added");
-                itemList.Remove(item);
+                Debug.Log(itemList[i] + " " + "has been added");
+                itemList[i] = itemName + "Done";
+            }
+            if (itemList[i] == itemName + "Done")
+            {
+                Debug.Log(itemList[i]);
             }
         }
     }
