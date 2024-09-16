@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d819ac439dc6c47a733d15ce9e71bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopList: {fileID: 0}
+  shopList: {fileID: 31568615}
   itemName: 
 --- !u!1 &1968827478
 GameObject:

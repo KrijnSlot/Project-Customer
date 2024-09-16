@@ -28,7 +28,7 @@ public class FirstPersonCam : MonoBehaviour
         camRotY += mouseX;
         camRotX -= mouseY;
         camRotX = Mathf.Clamp(camRotX, -90f, 90);
-        if (move.onCart)
+        //if (move.onCart)
             /*playerOrien.transform.rotation = Quaternion.Euler(0, camRotY, 0);*/
             /*camRotY = Mathf.Clamp(camRotY, clamp, clamp + 180);*/
         if (!move.onCart)
