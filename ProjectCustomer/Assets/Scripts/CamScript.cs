@@ -32,7 +32,7 @@ public class FirstPersonCam : MonoBehaviour
             /*playerOrien.transform.rotation = Quaternion.Euler(0, camRotY, 0);*/
             /*camRotY = Mathf.Clamp(camRotY, clamp, clamp + 180);*/
         if (!move.onCart)
-            playerOrien.transform.rotation = Quaternion.Euler(0, camRotY, 0);
+            playerOrien.rotation = Quaternion.Euler(0, camRotY, 0);
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
     }
 }

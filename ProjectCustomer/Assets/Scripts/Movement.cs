@@ -71,6 +71,7 @@ public class Accel : MonoBehaviour
             directionMoving = (Player.forward * verInput + Player.right * horInput).normalized;
 
             rb.AddForce(directionMoving * thrust * 10f, ForceMode.Force);
+            yRot = Cam.camRotY;
         }
     }
     public void Update()
@@ -110,6 +111,10 @@ public class Accel : MonoBehaviour
         {
             Player.transform.rotation = Quaternion.Euler(0, yRot, 0);
             Cam.clamp = Player.rotation.eulerAngles.y - 90;
+        }
+        else
+        {
+            Player.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
     }
 
