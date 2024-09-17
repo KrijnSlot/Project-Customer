@@ -6,12 +6,15 @@ using UnityEngine;
 public class ShoppingList : MonoBehaviour
 {
     public List<string> itemList = new List<string>();
+    private int itemsDone;
 
     private int indexCheck = 1;
     private void Start()
     {
         itemList.Add("soup");
         itemList.Add("Item");
+        
+        itemsDone = itemList.Count;
     }
     public void ItemCheck(string itemName)
     {
@@ -22,6 +25,7 @@ public class ShoppingList : MonoBehaviour
             {
                 Debug.Log(itemList[i] + " " + "has been added");
                 itemList[i] = itemName + "Done";
+                itemsDone--;
             }
             if (itemList[i] == itemName + "Done")
             {
@@ -31,7 +35,7 @@ public class ShoppingList : MonoBehaviour
     }
     void Update()
     {
-        if(itemList.Count == 0)
+        if(itemsDone == 0)
         {
             Debug.Log("List is done");
         }
