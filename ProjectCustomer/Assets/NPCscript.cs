@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPCscript : MonoBehaviour
 {
     [SerializeField] GameObject Player;
-    public Transform holdPos;
     // Start is called before the first frame update
     // Update is called once per frame
     void Update()
