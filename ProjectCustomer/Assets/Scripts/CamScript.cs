@@ -9,9 +9,10 @@ public class FirstPersonCam : MonoBehaviour
     [SerializeField] Accel move;
     [SerializeField] float mouseSenseX = 2f;
     [SerializeField] float mouseSenseY = 2f;
-    float camRotX = 0f;
     public float camRotY = 0f;
-    public float clamp = -90;
+    float camRotX = 0f;
+    float lookRange = 10f;
+    bool onPlayer = true;
 
     private void Start()
     {
@@ -28,11 +29,41 @@ public class FirstPersonCam : MonoBehaviour
         camRotY += mouseX;
         camRotX -= mouseY;
         camRotX = Mathf.Clamp(camRotX, -90f, 90);
-        //if (move.onCart)
-            /*playerOrien.transform.rotation = Quaternion.Euler(0, camRotY, 0);*/
-            /*camRotY = Mathf.Clamp(camRotY, clamp, clamp + 180);*/
-        if (!move.onCart)
+        if (!move.onCart && onPlayer)
             playerOrien.rotation = Quaternion.Euler(0, camRotY, 0);
+        else if (!onPlayer) playerOrien.rotation = playerOrien.rotation;
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
+
+
+        if (Input.GetKeyDown(KeyCode.Q) && !onPlayer)
+        {
+            move.enabled = true;
+            onPlayer = true;
+            gameObject.transform.SetParent(playerOrien);
+            gameObject.transform.position = new Vector3(playerOrien.position.x, gameObject.transform.position.y, playerOrien.position.z);
+            camRotY = playerOrien.rotation.eulerAngles.y;
+            camRotX = playerOrien.rotation.eulerAngles.x;
+        }
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, lookRange))
+        {
+            //make sure pickup tag is attached
+            if (hit.transform.gameObject.tag == "NPC")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    move.enabled = false;
+                    onPlayer = false;
+                    gameObject.transform.SetParent(hit.transform.gameObject.transform);
+                    /*diff = new Vector3(gameObject.transform.position.x - hit.transform.gameObject.transform.position.x , gameObject.transform.position.y, gameObject.transform.position.z - hit.transform.gameObject.transform.position.z);*/
+                    gameObject.transform.position = new Vector3(hit.transform.gameObject.transform.position.x, gameObject.transform.position.y, hit.transform.gameObject.transform.position.z);
+                    camRotY = hit.transform.gameObject.transform.rotation.eulerAngles.y;
+                    camRotX = hit.transform.gameObject.transform.rotation.eulerAngles.x;
+
+                    Debug.Log("Check");
+                    //pass in object hit into the PickUpObject function
+                }
+            }
+        }
     }
 }

@@ -7,8 +7,6 @@ public class ShoppingList : MonoBehaviour
 {
     public List<string> itemList = new List<string>();
     private int itemsDone;
-
-    private int indexCheck = 1;
     private void Start()
     {
         itemList.Add("soup");
