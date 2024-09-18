@@ -48,11 +48,11 @@ public class Accel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(Player.forward * CartThrust);
+                rb.AddForce(gameObject.transform.forward * CartThrust);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(Player.forward * -CartThrust);
+                rb.AddForce(gameObject.transform.forward * -CartThrust);
             }
             if (Input.GetKey(KeyCode.A))
             {
