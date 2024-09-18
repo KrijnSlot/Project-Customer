@@ -19,7 +19,9 @@ public class Accel : MonoBehaviour
     bool cartRay;
     Rigidbody rb;
 
-    [SerializeField] float thrust;
+    [SerializeField] float NoCartThrust;
+    [SerializeField] float CartThrust;
+
     [SerializeField] float Forwardthrust;
 
     Vector3 directionMoving;
@@ -49,11 +51,11 @@ public class Accel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(Player.forward * thrust);
+                rb.AddForce(Player.forward * CartThrust);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(Player.forward * -thrust);
+                rb.AddForce(Player.forward * -CartThrust);
             }
             if (Input.GetKey(KeyCode.A))
             {
@@ -70,7 +72,7 @@ public class Accel : MonoBehaviour
         {
             directionMoving = (Player.forward * verInput + Player.right * horInput).normalized;
 
-            rb.AddForce(directionMoving * thrust * 10f, ForceMode.Force);
+            rb.AddForce(directionMoving * NoCartThrust * 10f, ForceMode.Force);
             yRot = Cam.camRotY;
         }
     }
