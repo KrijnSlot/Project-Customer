@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 119887402}
   - component: {fileID: 119887401}
   - component: {fileID: 119887400}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Item
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 548184359}
   - component: {fileID: 548184358}
   - component: {fileID: 548184357}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,15 +612,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.85
+      value: -2.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2213
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -664,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 656e0c800f9de594490060f2257d5ab5, type: 3}
       propertyPath: m_TagString
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 964367326}
   - component: {fileID: 964367325}
   - component: {fileID: 964367324}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1129,7 @@ GameObject:
   - component: {fileID: 1017389658}
   - component: {fileID: 1017389657}
   - component: {fileID: 1017389656}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 1413581902}
   - component: {fileID: 1413581901}
   - component: {fileID: 1413581900}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 1499369954}
   - component: {fileID: 1499369953}
   - component: {fileID: 1499369952}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1713,12 +1713,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606036562}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.541, z: 1.842}
+  m_LocalRotation: {x: -0.10473209, y: -0, z: -0, w: 0.9945005}
+  m_LocalPosition: {x: 0, y: 0.06418985, z: 1.7367282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1893511114}
+  m_Father: {fileID: 1814185934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1608573787
 GameObject:
@@ -1942,7 +1942,7 @@ GameObject:
   - component: {fileID: 1689713180}
   - component: {fileID: 1689713179}
   - component: {fileID: 1689713178}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2241,7 +2241,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 383
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2266,6 +2266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1606036563}
   - {fileID: 307302585}
   m_Father: {fileID: 1893511114}
   m_LocalEulerAnglesHint: {x: 12.023, y: 0, z: 0}
@@ -2441,7 +2442,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1606036563}
   - {fileID: 1814185934}
   - {fileID: 1418874404}
   - {fileID: 767715195}
