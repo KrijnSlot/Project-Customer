@@ -10,11 +10,8 @@ public class Accel : MonoBehaviour
 {
     [SerializeField] FirstPersonCam Cam;
     [SerializeField] GameObject Shoppingcart;
-    [SerializeField] Transform Player;
     [SerializeField] LayerMask Cart;
     [SerializeField] Transform holdPos;
-    [SerializeField] float rotate;
-    [SerializeField] float rotate2;
     public bool onCart = true;
     bool cartRay;
     Rigidbody rb;
@@ -51,11 +48,11 @@ public class Accel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(Player.forward * CartThrust);
+                rb.AddForce(gameObject.transform.forward * CartThrust);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(Player.forward * -CartThrust);
+                rb.AddForce(gameObject.transform.forward * -CartThrust);
             }
             if (Input.GetKey(KeyCode.A))
             {
@@ -70,7 +67,7 @@ public class Accel : MonoBehaviour
         }
         else
         {
-            directionMoving = (Player.forward * verInput + Player.right * horInput).normalized;
+            directionMoving = (gameObject.transform.forward * verInput + gameObject.transform.right * horInput).normalized;
 
             rb.AddForce(directionMoving * NoCartThrust * 10f, ForceMode.Force);
             yRot = Cam.camRotY;
@@ -79,8 +76,6 @@ public class Accel : MonoBehaviour
     public void Update()
     {
         Inputs();
-        rotate = Player.rotation.eulerAngles.y;
-        rotate2 = yRot;
         if (exitTimer > 0)
         {
             exitTimer -= Time.deltaTime;
@@ -94,11 +89,10 @@ public class Accel : MonoBehaviour
         {
             if (cartRay && !onCart)
             {
-                Shoppingcart.transform.SetParent(Player);
+                Shoppingcart.transform.SetParent(gameObject.transform);
                 Shoppingcart.transform.position = holdPos.position;
-                Shoppingcart.transform.rotation = Quaternion.Euler(Player.rotation.x, Cam.camRotY, Player.rotation.z);
-                Player.rotation = Quaternion.Euler(0, Cam.camRotY, 0);
-                Cam.clamp = Cam.camRotY - 90;
+                Shoppingcart.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, Cam.camRotY, gameObject.transform.rotation.z);
+                gameObject.transform.rotation = Quaternion.Euler(0, Cam.camRotY, 0);
                 onCart = true;
                 exitTimer = exitTime;
                 exiting = true;
@@ -111,12 +105,11 @@ public class Accel : MonoBehaviour
         }
         if (onCart)
         {
-            Player.transform.rotation = Quaternion.Euler(0, yRot, 0);
-            Cam.clamp = Player.rotation.eulerAngles.y - 90;
+            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
         else
         {
-            Player.transform.rotation = Quaternion.Euler(0, yRot, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
     }
 

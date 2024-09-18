@@ -37,10 +37,10 @@ public class ShelfSwitchScript : MonoBehaviour
 
             if (dontSwitch.Contains(shelfList[i])) continue;
 
-            Vector3 shelfPos = shelfList[i].transform.position;
+            Vector3 shelfPos = new Vector3(shelfList[i].transform.position.x, shelfList[rnd].transform.position.y, shelfList[i].transform.position.z);
             Quaternion shelfRot = shelfList[i].transform.rotation;
 
-            shelfList[i].transform.position = shelfList[rnd].transform.position;
+            shelfList[i].transform.position = new Vector3(shelfList[rnd].transform.position.x, shelfList[i].transform.position.y, shelfList[rnd].transform.position.z);
             shelfList[rnd].transform.position = shelfPos;
 
             shelfList[i].transform.rotation = shelfList[rnd].transform.rotation;
