@@ -313,11 +313,11 @@ Transform:
   m_GameObject: {fileID: 444836286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15199995, z: 1.44}
+  m_LocalPosition: {x: 0, y: -0.992, z: 1.2}
   m_LocalScale: {x: 1, y: 0.73154, z: 1.5751}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 528070592}
+  m_Father: {fileID: 1966749951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &444836288
 BoxCollider:
@@ -433,7 +433,8 @@ MonoBehaviour:
   rotate: 0
   rotate2: 0
   onCart: 1
-  thrust: 10
+  NoCartThrust: 2
+  CartThrust: 10
   Forwardthrust: 0
 --- !u!54 &528070588
 Rigidbody:
@@ -550,7 +551,6 @@ Transform:
   m_Children:
   - {fileID: 1966749951}
   - {fileID: 1070371200}
-  - {fileID: 444836287}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663143925
@@ -1083,6 +1083,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663143926}
+  - {fileID: 444836287}
   m_Father: {fileID: 528070592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1966749952
