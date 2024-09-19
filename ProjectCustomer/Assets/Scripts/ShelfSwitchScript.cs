@@ -64,7 +64,7 @@ public class ShelfSwitchScript : MonoBehaviour
             {
                 if (NewCubePosition[j] == CubePosition[i])
                 {
-                    print("cube" + j + "is on position" + i);
+                    print("cube" + j + "is on position" + i); //cube is the name of the object. position is determined by initial position of the cubes
                 }
             }
         }
