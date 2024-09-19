@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+
 
 public class ShoppingList : MonoBehaviour
 {
     public List<string> itemList = new List<string>();
+
+    [SerializeField] TMP_Text text;
+
     private int itemsDone;
     private void Start()
     {
@@ -13,6 +19,12 @@ public class ShoppingList : MonoBehaviour
         itemList.Add("Item");
         
         itemsDone = itemList.Count;
+        foreach (string item in itemList)
+        {
+            text.text += " ";
+            text.text += item;
+            text.text += " ";
+        }
     }
     public void ItemCheck(string itemName)
     {
