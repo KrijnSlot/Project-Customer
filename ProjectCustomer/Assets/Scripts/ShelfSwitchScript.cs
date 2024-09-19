@@ -56,22 +56,15 @@ public class ShelfSwitchScript : MonoBehaviour
 
                 }
             }
-
-
-
-
-
         }
 
         for (int i = 0; i < shelfList.Count; i++)
         {
             for (int j = 0; j < shelfList.Count; j++)
             {
-
-
                 if (NewCubePosition[j] == CubePosition[i])
                 {
-                    print("cube" + j + "is on position" + i);
+                    print("cube" + j + "is on position" + i); //cube is the name of the object. position is determined by initial position of the cubes
                 }
             }
         }
