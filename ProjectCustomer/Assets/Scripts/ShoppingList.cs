@@ -19,6 +19,8 @@ public class ShoppingList : MonoBehaviour
 
     [SerializeField] int gibberishCount;
 
+    [SerializeField] Image crosshair;
+
     bool checkingList = false;
     private int itemsDone;
     private void Start()
@@ -79,6 +81,7 @@ public class ShoppingList : MonoBehaviour
                 text.enabled = true;
                 image.enabled = true;
                 checkingList = true;
+                crosshair.enabled = false;
             }
             else
             {
@@ -86,6 +89,7 @@ public class ShoppingList : MonoBehaviour
                 text.enabled = false;
                 image.enabled = false;
                 checkingList = false;
+                crosshair.enabled = true;
             }
         }
 
