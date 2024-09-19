@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 using System.CodeDom.Compiler;
 
 
 public class ShoppingList : MonoBehaviour
 {
-    public List<string> itemList = new List<string>();
+    public List<GameObject> itemListObj = new List<GameObject>();
+    List<string> itemList = new List<string>();
+    List<string> textList = new List<string>();
 
     [SerializeField] TMP_Text text;
     [SerializeField] Image image;
@@ -19,11 +20,15 @@ public class ShoppingList : MonoBehaviour
     private int itemsDone;
     private void Start()
     {
-        itemList.Add("soup");
-        itemList.Add("Item");
+        foreach (GameObject item in itemListObj)
+        {
+            itemList.Add(item.name);
+        }
 
         itemsDone = itemList.Count;
-        foreach (string item in itemList)
+
+        textList = new List<string>(itemList);
+        foreach (string item in textList)
         {
             text.text += item;
             text.text += "\n";
@@ -32,18 +37,22 @@ public class ShoppingList : MonoBehaviour
     public void ItemCheck(string itemName)
     {
         Debug.Log(itemName + " " + "Check2");
+        textList.Clear();
+        text.text = "";
         for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i] == itemName)
             {
                 Debug.Log(itemList[i] + " " + "has been added");
-                itemList[i] = itemName + "Done";
+                itemList[i] = "<s>" + itemName + "</s>";
                 itemsDone--;
             }
-            if (itemList[i] == itemName + "Done")
-            {
-                Debug.Log(itemList[i]);
-            }
+        }
+        textList = new List<string>(itemList);
+        foreach (string item in textList)
+        {
+            text.text += item;
+            text.text += "\n";
         }
     }
     void Update()
