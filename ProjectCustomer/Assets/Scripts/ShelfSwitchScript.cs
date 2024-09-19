@@ -35,9 +35,9 @@ public class ShelfSwitchScript : MonoBehaviour
     {
         for (int i = 0; i < shelfList.Count; i++)
         {
-            /*foreach(GameObject shelf in row[i].gameObject.transform.GetChild(0))
+            /*for(int j =0; j < row[i].gameObject.transform.GetChildCount(); j++)
             {
-                print(shelf.name);
+                print(row[i].gameObject.transform.GetChild(j).name);
             }*/
             int rnd = UnityEngine.Random.Range(0, shelfList.Count - 1);
 
