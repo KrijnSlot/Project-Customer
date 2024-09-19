@@ -10,6 +10,8 @@ public class ShelfSwitchScript : MonoBehaviour
     [SerializeField]
     List<GameObject> dontSwitch = new List<GameObject>();
 
+    /*List<GameObject> row = new List<GameObject>();*/
+
     [SerializeField]
     List<GameObject> shelfList = new List<GameObject>();
 
@@ -26,13 +28,17 @@ public class ShelfSwitchScript : MonoBehaviour
             CubePosition.Add(shelfList[i].transform.position);
             NewCubePosition.Add(shelfList[i].transform.position);
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         for (int i = 0; i < shelfList.Count; i++)
         {
-
+            /*foreach(GameObject shelf in row[i].gameObject.transform.GetChild(0))
+            {
+                print(shelf.name);
+            }*/
             int rnd = UnityEngine.Random.Range(0, shelfList.Count - 1);
 
             if (dontSwitch.Contains(shelfList[i])) continue;
