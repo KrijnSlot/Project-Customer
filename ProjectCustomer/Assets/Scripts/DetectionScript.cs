@@ -13,4 +13,3 @@ public class DetectionScript : MonoBehaviour
         shopList.ItemCheck(itemName);
     }
 }
-Camera.
