@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.CodeDom.Compiler;
 
 
 public class ShoppingList : MonoBehaviour
@@ -24,9 +25,8 @@ public class ShoppingList : MonoBehaviour
         itemsDone = itemList.Count;
         foreach (string item in itemList)
         {
-            text.text += " ";
             text.text += item;
-            text.text += " ";
+            text.text += "\n";
         }
     }
     public void ItemCheck(string itemName)
