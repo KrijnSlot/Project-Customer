@@ -37,9 +37,10 @@ public class ShelfSwitchScript : MonoBehaviour
         shelfList.Clear();
         for (int i = 0; i < row.Count; i++)
         {
-            for (int j = 0; j < row[i].gameObject.transform.GetChildCount(); j++)
+            for (int j = 0; j < row[i].gameObject.transform.childCount; j++)
             {
                 print(row[i].gameObject.transform.GetChild(j).name);
+                if (dontSwitch.Contains(row[i])) continue;
                 shelfList.Add(row[i].gameObject.transform.GetChild(j).gameObject);
             }
             for (int j = 0; j < shelfList.Count; j++) {
@@ -64,7 +65,7 @@ public class ShelfSwitchScript : MonoBehaviour
                         NewCubePosition[g] = (shelfList[g].transform.position);
 
 
-                    }
+                    
                 }*/
             
         }
