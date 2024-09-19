@@ -148,7 +148,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119189762}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &119189764
 Camera:
   m_ObjectHideFlags: 0
@@ -1137,6 +1137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopList: {fileID: 1893511108}
+  pickUpScript: {fileID: 1814185931}
   itemName: 
 --- !u!65 &880836668
 BoxCollider:
@@ -2891,6 +2892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemList: []
+  text: {fileID: 0}
 --- !u!114 &1893511109
 MonoBehaviour:
   m_ObjectHideFlags: 0
