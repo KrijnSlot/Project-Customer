@@ -15,14 +15,9 @@ public class NpcSript : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-    public GameObject projectile;
-
     //States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, lookRange;
+    public bool playerInSightRange, playerInLookRange;
 
     private void Start()
     {
@@ -34,11 +29,11 @@ public class NpcSript : MonoBehaviour
     {
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInLookRange = Physics.CheckSphere(transform.position, lookRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) CloseToPlayer();
+        if (!playerInSightRange) Patroling();
+        //if (playerInSightRange && !playerInLookRange) ChasePlayer();
+        if (playerInLookRange) CloseToPlayer();
     }
 
     private void Patroling()
@@ -68,6 +63,7 @@ public class NpcSript : MonoBehaviour
 
     private void ChasePlayer()
     {
+        transform.LookAt(player);
         agent.SetDestination(player.position);
     }
 
