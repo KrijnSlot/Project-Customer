@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class ShoppingList : MonoBehaviour
@@ -11,13 +12,15 @@ public class ShoppingList : MonoBehaviour
     public List<string> itemList = new List<string>();
 
     [SerializeField] TMP_Text text;
+    [SerializeField] Image image;
 
+    bool checkingList = false;
     private int itemsDone;
     private void Start()
     {
         itemList.Add("soup");
         itemList.Add("Item");
-        
+
         itemsDone = itemList.Count;
         foreach (string item in itemList)
         {
@@ -29,7 +32,7 @@ public class ShoppingList : MonoBehaviour
     public void ItemCheck(string itemName)
     {
         Debug.Log(itemName + " " + "Check2");
-        for(int i=0; i < itemList.Count; i++)
+        for (int i = 0; i < itemList.Count; i++)
         {
             if (itemList[i] == itemName)
             {
@@ -45,7 +48,22 @@ public class ShoppingList : MonoBehaviour
     }
     void Update()
     {
-        if(itemsDone == 0)
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!checkingList)
+            {
+                text.enabled = true;
+                image.enabled = true;
+                checkingList = true;
+            }
+            else
+            {
+                text.enabled = false;
+                image.enabled = false;
+                checkingList = false;
+            }
+        }
+        if (itemsDone == 0)
         {
             Debug.Log("List is done");
         }
