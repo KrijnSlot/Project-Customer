@@ -57,6 +57,7 @@ public class ShoppingList : MonoBehaviour
                 Debug.Log(itemList[i] + " " + "has been added");
                 itemList[i] = "<s>" + itemName + "</s>";
                 itemsDone--;
+                Check = 0;
                 break;
             }
         }
