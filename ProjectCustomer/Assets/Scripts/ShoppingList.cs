@@ -13,6 +13,8 @@ public class ShoppingList : MonoBehaviour
     List<string> itemList = new List<string>();
     List<string> textList = new List<string>();
 
+    [SerializeField] TMP_FontAsset gibFont;
+
     [SerializeField] TMP_Text text;
     [SerializeField] TMP_Text gibberish;
     [SerializeField] Image image;
@@ -20,6 +22,8 @@ public class ShoppingList : MonoBehaviour
     [SerializeField] int gibberishCount;
 
     [SerializeField] Image crosshair;
+
+    [SerializeField] float Check;
 
     bool checkingList = false;
     private int itemsDone;
@@ -37,9 +41,6 @@ public class ShoppingList : MonoBehaviour
         {
             text.text += item;
             text.text += "\n";
-
-            gibberish.text += item;
-            gibberish.text += "\n";
         }
     }
     public void ItemCheck(string itemName)
@@ -92,32 +93,69 @@ public class ShoppingList : MonoBehaviour
                 crosshair.enabled = true;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
+        Check -= Time.deltaTime;
+        if (Check <= 0)
         {
-            List<int> list = new List<int>();
-
-            while (list.Count < gibberishCount)
+            if (Insanity.insanity > 25)
             {
-                int gib = Random.Range(0, textList.Count);
-                list.Add(gib);
+                int insanityCheck = 0;
+                int insanityCheck2 = 0;
+                if (Insanity.insanity > 25 && Insanity.insanity < 75)
+                {
+                    gibberishCount = 1;
+                    insanityCheck = Random.Range(0, 11);
+                }
+                else if (Insanity.insanity > 75)
+                {
+                    gibberishCount = 2;
+                    insanityCheck2 = Random.Range(0, 11);
+                }
+                if (insanityCheck == 10 || insanityCheck2 == 10)
+                {
+                    print("text");
+                    List<int> list = new List<int>();
+                    gibberish.font = gibFont;
+                    int gib;
+                    while (list.Count < gibberishCount)
+                    {
+                        gib = Random.Range(0, textList.Count);
+                        list.Add(gib);
+                    }
+                    text.text = "";
+                    for (int i = 0; i < itemList.Count; i++)
+                    {
+                        if (list.Contains(i))
+                        {
+                            Debug.Log(itemList[i] + " " + "has been added");
+                            text.text += "";
+                            text.text += "\n";
+                        }
+                        else
+                        {
+                            text.text += itemList[i];
+                            text.text += "\n";
+                        }
+                    }
+
+                    gibberish.text = "";
+
+                    for (int i = 0; i < textList.Count; i++)
+                    {
+                        if (list.Contains(i))
+                        {
+                            gibberish.text += textList[i];
+                            gibberish.text += "\n";
+                        }
+                        else
+                        {
+                            gibberish.text += "";
+                            gibberish.text += "\n";
+                        }
+                    }
+                    Check = Random.Range(10,25);
+                }
             }
 
-            gibberish.text = "";
-
-            for (int i = 0; i < textList.Count; i++)
-            {
-                if (list.Contains(i))
-                {
-                    gibberish.text += "dskjd";
-                    gibberish.text += "\n";
-                }
-                else
-                {
-                    gibberish.text += textList[i];
-                    gibberish.text += "\n";
-                }
-            }
         }
 
         if (itemsDone == 0)
