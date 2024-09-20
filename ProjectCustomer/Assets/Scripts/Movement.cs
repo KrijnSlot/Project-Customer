@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 
 public class Accel : MonoBehaviour
 {
+    //[HideInInspector] public static bool inDialogue = false;
+
     [SerializeField] FirstPersonCam Cam;
     [SerializeField] GameObject Shoppingcart;
     [SerializeField] LayerMask Cart;
@@ -73,6 +75,7 @@ public class Accel : MonoBehaviour
             yRot = Cam.camRotY;
         }
     }
+
     public void Update()
     {
         Inputs();

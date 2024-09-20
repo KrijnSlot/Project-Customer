@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -67,11 +66,13 @@ public class ShelfSwitchScript : MonoBehaviour
         }
         for (int i = 0; i < shelfList.Count; i++)
         {
-            int rnd = UnityEngine.Random.Range(0, shelfList.Count - 1);
+            int rnd = Random.Range(0, shelfList.Count - 1);
             if (dontSwitch.Contains(shelfList[i])) continue;
-            while (dontSwitch.Contains(shelfList[rnd]))
+            int maxLoop = 0;
+            while (dontSwitch.Contains(shelfList[rnd]) && maxLoop <20)
             {
-                rnd = UnityEngine.Random.Range(0, shelfList.Count - 1);
+                rnd = Random.Range(0, shelfList.Count - 1);
+                maxLoop++;
             }
 
             Vector3 shelfPos = new Vector3(shelfList[i].transform.position.x, shelfList[rnd].transform.position.y, shelfList[i].transform.position.z);

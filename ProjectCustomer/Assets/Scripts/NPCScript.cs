@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NpcSript : MonoBehaviour
+public class NPCSript : MonoBehaviour
 {
+    [HideInInspector] public static bool colliding = false;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -27,6 +29,8 @@ public class NpcSript : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(DialogueScript.colWait);
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInLookRange = Physics.CheckSphere(transform.position, lookRange, whatIsPlayer);
@@ -34,6 +38,7 @@ public class NpcSript : MonoBehaviour
         if (!playerInSightRange) Patroling();
         //if (playerInSightRange && !playerInLookRange) ChasePlayer();
         if (playerInLookRange) CloseToPlayer();
+        if (!playerInLookRange || DialogueScript.colWait) NotColliding();
     }
 
     private void Patroling()
@@ -69,9 +74,27 @@ public class NpcSript : MonoBehaviour
 
     private void CloseToPlayer()
     {
-        //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
+        if (!DialogueScript.colWait)
+        {
+            //Make sure enemy doesn't move
+            agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+            transform.LookAt(player);
+
+            colliding = true;
+        }
+    }
+
+    private void NotColliding()
+    {
+        colliding = false;
+
+        Invoke("WaitOff", 10f);
+    }
+
+    void WaitOff()
+    {
+        //Debug.Log("wait");
+        DialogueScript.colWait = false;
     }
 }

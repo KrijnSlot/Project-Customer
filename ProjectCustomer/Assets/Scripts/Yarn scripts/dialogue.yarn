@@ -1,0 +1,15 @@
+﻿title: YarnDialogueScript
+tags:
+---
+<<set $positive = false>>
+<<set $neutral = false>>
+<<set $negative = false>>
+
+Im sorry... can you help me?
+    -> yes of course sir.
+        <<set $positive = true>>
+    -> I'm sorry, I'm busy.
+        <<set $neutral = true>>
+    -> Piss of old man!
+        <<set $negative = true>>
+===

@@ -7,9 +7,9 @@ public class FirstPersonCam : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Transform playerOrien;
-    [SerializeField] Accel move;
-    [SerializeField] float mouseSenseX = 2f;
-    [SerializeField] float mouseSenseY = 2f;
+    [SerializeField] public Accel move;
+    [SerializeField] public float mouseSenseX = 2f;
+    [SerializeField] public float mouseSenseY = 2f;
     [SerializeField] Transform camHolder1;
     [SerializeField] Transform camHolder2;
     [SerializeField] Transform inBetweenPoint;
@@ -47,7 +47,7 @@ public class FirstPersonCam : MonoBehaviour
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
 
 
-        if (Input.GetKeyDown(KeyCode.Q) && !onPlayer)
+        if (!NPCSript.colliding && !onPlayer)
         {
             move.enabled = true;
             onPlayer = true;
@@ -69,7 +69,7 @@ public class FirstPersonCam : MonoBehaviour
             //make sure pickup tag is attached
             if (hit.transform.gameObject.tag == "NPC")
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (NPCSript.colliding)
                 {
                     move.enabled = false;
                     onPlayer = false;
