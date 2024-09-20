@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor.Toolbars;
+#endif
 using Yarn.Unity;
 using System;
 using System.Reflection;
@@ -72,9 +74,11 @@ public class DialogueScript : MonoBehaviour
 
     public void ClearLog()
     {
+#if UNITY_EDITOR
         var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
         var type = assembly.GetType("UnityEditor.LogEntries");
         var method = type.GetMethod("Clear");
         method.Invoke(new object(), null);
+#endif
     }
 }

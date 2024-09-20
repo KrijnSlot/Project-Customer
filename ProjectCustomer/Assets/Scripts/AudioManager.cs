@@ -1,22 +1,29 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class AudioSync : MonoBehaviour
+public class SyncAudioSources : MonoBehaviour
 {
-    public AudioSource master;
-    public AudioSource[] slaves;
+    [SerializeField]
+    public AudioSource audioSource;    // Your single AudioSource
+    public Transform[] soundPositions; // Different target positions
 
+    private int currentTargetIndex = 0;
 
-    private IEnumerator SyncSources()
+    void Start()
     {
-        while (true)
+        audioSource.clip = Resources.Load<AudioClip>("Assets/Art/music/Funky beat_Normalized"); // Load your audio clip
+        audioSource.spatialBlend = 1.0f; // Make the sound 3D (fully spatial)
+        audioSource.Play();
+    }
+
+    void Update()
+    {
+        // Move the audio source to the next target position (or however you want to move it)
+        if (soundPositions.Length > 0)
         {
-            foreach (var slave in slaves)
-            {
-                slave.timeSamples = master.timeSamples;
-                yield return null;
-            }
+            audioSource.transform.position = soundPositions[currentTargetIndex].position;
+
+            // Example: Change target after some condition, like time
+            currentTargetIndex = (currentTargetIndex + 1) % soundPositions.Length;
         }
     }
 }
