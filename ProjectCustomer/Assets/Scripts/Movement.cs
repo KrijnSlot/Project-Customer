@@ -79,15 +79,26 @@ public class Accel : MonoBehaviour
     public void Update()
     {
         Inputs();
-        if (exitTimer > 0)
+
+        UseCart();
+
+        if (onCart)
         {
-            exitTimer -= Time.deltaTime;
+            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
         else
         {
-            exiting = false;
+            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
+    }
+
+    void UseCart()
+    {
+        if (exitTimer > 0) exitTimer -= Time.deltaTime;
+        else exiting = false;
+
         cartRay = Physics.Raycast(Cam.transform.position, Cam.transform.forward, 10f, Cart);
+
         if (Input.GetKeyUp(KeyCode.F))
         {
             if (cartRay && !onCart)
@@ -105,14 +116,6 @@ public class Accel : MonoBehaviour
                 Shoppingcart.transform.SetParent(null);
                 onCart = false;
             }
-        }
-        if (onCart)
-        {
-            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
-        }
-        else
-        {
-            gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
     }
 

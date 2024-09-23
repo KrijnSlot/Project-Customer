@@ -31,8 +31,19 @@ public class FirstPersonCam : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        BasicCamFunctions();
+
+        CamSwitchCheck();
+
+        Rotating();
+
+    }
+
+    void BasicCamFunctions()
+    {
         if (onPlayer && !rotating) transform.position = camHolder1.position;
         if (!onPlayer && !rotating) transform.position = camHolder2.position;
+
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSenseX * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSenseY * Time.deltaTime;
 
@@ -42,11 +53,12 @@ public class FirstPersonCam : MonoBehaviour
 
         if (!move.onCart && onPlayer && !rotating)
             playerOrien.rotation = Quaternion.Euler(0, camRotY, 0);
-        /*else if (!onPlayer && !rotating) playerOrien.LookAt(NPC.transform);*/
 
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
+    }
 
-
+    void CamSwitchCheck()
+    {
         if (!NPCSript.colliding && !onPlayer)
         {
             move.enabled = true;
@@ -87,10 +99,14 @@ public class FirstPersonCam : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Rotating()
+    {
         if (rotating)
         {
             gameObject.transform.LookAt(inBetweenPoint);
-            rotationTime += Time.deltaTime /2;
+            rotationTime += Time.deltaTime / 2;
             inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime);
             print(inBetweenPoint.rotation.eulerAngles.y);
             print(targetRotation.eulerAngles.y);

@@ -44,6 +44,28 @@ public class ShoppingList : MonoBehaviour
             text.text += "\n";
         }
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ListToggle();
+        }
+        Check -= Time.deltaTime;
+        if (Check <= 0)
+        {
+            if (Insanity.insanity > 25)
+            {
+                InsaneTextChange();
+            }
+
+        }
+
+        if (itemsDone == 0)
+        {
+            Debug.Log("List is done");
+        }
+
+    }
     public void ItemCheck(string itemName)
     {
         Debug.Log(itemName + " " + "Check2");
@@ -66,7 +88,7 @@ public class ShoppingList : MonoBehaviour
 
         textList = new List<string>(itemList);
 
-        for(int i =0; i < textList.Count; i++)
+        for (int i = 0; i < textList.Count; i++)
         {
             if (list.Count == 0)
             {
@@ -88,100 +110,91 @@ public class ShoppingList : MonoBehaviour
             }
         }
     }
-    void Update()
+
+
+
+    void ListToggle()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (!checkingList)
         {
-            if (!checkingList)
-            {
-                gibberish.enabled = true;
-                text.enabled = true;
-                image.enabled = true;
-                checkingList = true;
-                crosshair.enabled = false;
-            }
-            else
-            {
-                gibberish.enabled = false;
-                text.enabled = false;
-                image.enabled = false;
-                checkingList = false;
-                crosshair.enabled = true;
-            }
+            gibberish.enabled = true;
+            text.enabled = true;
+            image.enabled = true;
+            checkingList = true;
+            crosshair.enabled = false;
         }
-        Check -= Time.deltaTime;
-        if (Check <= 0)
+        else
         {
-            if (Insanity.insanity > 25)
-            {
-                int insanityCheck = 0;
-                int insanityCheck2 = 0;
-                if (Insanity.insanity > 25 && Insanity.insanity < 75)
-                {
-                    gibberishCount = 1;
-                    insanityCheck = Random.Range(0, 11);
-                }
-                else if (Insanity.insanity > 75)
-                {
-                    gibberishCount = 2;
-                    insanityCheck2 = Random.Range(0, 11);
-                }
-
-
-                if (insanityCheck == 10 || insanityCheck2 == 10)
-                {
-                    print("text");
-                    list = new List<int>();
-                    gibberish.font = gibFont;
-                    int gib;
-
-                    while (list.Count < gibberishCount)
-                    {
-                        gib = Random.Range(0, textList.Count);
-                        list.Add(gib);
-                    }
-
-                    text.text = "";
-                    
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        if (list.Contains(i))
-                        {
-                            Debug.Log(itemList[i] + " " + "has been added");
-                            text.text += "";
-                            text.text += "\n";
-                        }
-                        else
-                        {
-                            text.text += itemList[i];
-                            text.text += "\n";
-                        }
-                    }
-
-                    gibberish.text = "";
-
-                    for (int i = 0; i < textList.Count; i++)
-                    {
-                        if (list.Contains(i))
-                        {
-                            gibberish.text += textList[i];
-                            gibberish.text += "\n";
-                        }
-                        else
-                        {
-                            gibberish.text += "";
-                            gibberish.text += "\n";
-                        }
-                    }
-                    Check = Random.Range(10, 25);
-                }
-            }
-
-        }
-
-        if (itemsDone == 0)
-        {
-            Debug.Log("List is done");
+            gibberish.enabled = false;
+            text.enabled = false;
+            image.enabled = false;
+            checkingList = false;
+            crosshair.enabled = true;
         }
     }
+
+    void InsaneTextChange()
+    {
+        int insanityCheck = 0;
+        int insanityCheck2 = 0;
+        if (Insanity.insanity > 25 && Insanity.insanity < 75)
+        {
+            gibberishCount = 1;
+            insanityCheck = Random.Range(0, 11);
+        }
+        else if (Insanity.insanity > 75)
+        {
+            gibberishCount = 2;
+            insanityCheck2 = Random.Range(0, 11);
+        }
+
+
+        if (insanityCheck == 10 || insanityCheck2 == 10)
+        {
+            list = new List<int>();
+            gibberish.font = gibFont;
+            int gib;
+
+            while (list.Count < gibberishCount)
+            {
+                gib = Random.Range(0, textList.Count);
+                list.Add(gib);
+            }
+
+            text.text = "";
+
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                if (list.Contains(i))
+                {
+                    Debug.Log(itemList[i] + " " + "has been added");
+                    text.text += "";
+                    text.text += "\n";
+                }
+                else
+                {
+                    text.text += itemList[i];
+                    text.text += "\n";
+                }
+            }
+
+            gibberish.text = "";
+
+            for (int i = 0; i < textList.Count; i++)
+            {
+                if (list.Contains(i))
+                {
+                    gibberish.text += textList[i];
+                    gibberish.text += "\n";
+                }
+                else
+                {
+                    gibberish.text += "";
+                    gibberish.text += "\n";
+                }
+            }
+            Check = Random.Range(10, 25);
+        }
+    }
+
 }
