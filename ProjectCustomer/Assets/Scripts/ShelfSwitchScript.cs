@@ -83,6 +83,7 @@ public class ShelfSwitchScript : MonoBehaviour
                 shelfList[rnd].transform.rotation = shelfRot;
             }
             canSwitch = Random.Range(25,50);
+            if(Insanity.insanity > 75) canSwitch = Random.Range(10,20);
         }
 
     }

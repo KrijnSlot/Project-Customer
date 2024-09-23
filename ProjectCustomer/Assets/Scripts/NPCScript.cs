@@ -1,10 +1,13 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NPCSript : MonoBehaviour
 {
     [HideInInspector] public static bool colliding = false;
+
+    [SerializeField] List<GameObject> walkTo = new List<GameObject>();
 
     public NavMeshAgent agent;
 
@@ -20,6 +23,8 @@ public class NPCSript : MonoBehaviour
     //States
     public float sightRange, lookRange;
     public bool playerInSightRange, playerInLookRange;
+
+    int walkToInt = 0;
 
     private void Start()
     {
@@ -56,13 +61,14 @@ public class NPCSript : MonoBehaviour
     }
     private void SearchWalkPoint()
     {
-        //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        for (int i = walkToInt; i < walkTo.Count; i++)
+        {
+            walkPoint = walkTo[i].transform.position;
+            walkToInt += 1;
+            if (walkToInt == walkTo.Count) walkToInt = 0;
+            break;
+        }
+        if (Physics.Raycast(walkPoint, -transform.up, 4f, whatIsGround))
             walkPointSet = true;
     }
 
