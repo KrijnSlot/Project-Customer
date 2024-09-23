@@ -81,6 +81,7 @@ public class FirstPersonCam : MonoBehaviour
             //make sure pickup tag is attached
             if (hit.transform.gameObject.tag == "NPC")
             {
+                camHolder2 = hit.transform.GetChild(0);
                 if (NPCSript.colliding)
                 {
                     move.enabled = false;
