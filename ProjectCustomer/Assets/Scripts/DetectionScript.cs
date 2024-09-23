@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DetectionScript : MonoBehaviour
@@ -10,6 +11,7 @@ public class DetectionScript : MonoBehaviour
     {
         if (pickUpScript.heldObj == false)
         {
+            if (other.gameObject.CompareTag("NPC")) return;
             itemName = other.gameObject.name;
             Debug.Log(itemName + " " + "Check1");
             shopList.ItemCheck(itemName);
