@@ -12,6 +12,7 @@ public class ShoppingList : MonoBehaviour
     public List<GameObject> itemListObj = new List<GameObject>();
     List<string> itemList = new List<string>();
     List<string> textList = new List<string>();
+    List<int> list = new List<int>();
 
     [SerializeField] TMP_FontAsset gibFont;
 
@@ -52,10 +53,11 @@ public class ShoppingList : MonoBehaviour
 
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i] == itemName)
+            if (itemList[i].Contains("/s")) continue;
+            if (itemName.Contains(itemList[i]))
             {
                 Debug.Log(itemList[i] + " " + "has been added");
-                itemList[i] = "<s>" + itemName + "</s>";
+                itemList[i] = "<s>" + itemList[i] + "</s>";
                 itemsDone--;
                 Check = 0;
                 break;
@@ -64,13 +66,26 @@ public class ShoppingList : MonoBehaviour
 
         textList = new List<string>(itemList);
 
-        foreach (string item in textList)
+        for(int i =0; i < textList.Count; i++)
         {
-            text.text += item;
-            text.text += "\n";
+            if (list.Count == 0)
+            {
+                text.text += itemList[i];
+                text.text += "\n";
 
-            gibberish.text += item;
-            gibberish.text += "\n";
+                gibberish.text += itemList[i];
+                gibberish.text += "\n";
+            }
+            else if (list.Contains(i))
+            {
+                text.text += "";
+                text.text += "\n";
+            }
+            else
+            {
+                text.text += itemList[i];
+                text.text += "\n";
+            }
         }
     }
     void Update()
@@ -111,18 +126,23 @@ public class ShoppingList : MonoBehaviour
                     gibberishCount = 2;
                     insanityCheck2 = Random.Range(0, 11);
                 }
+
+
                 if (insanityCheck == 10 || insanityCheck2 == 10)
                 {
                     print("text");
-                    List<int> list = new List<int>();
+                    list = new List<int>();
                     gibberish.font = gibFont;
                     int gib;
+
                     while (list.Count < gibberishCount)
                     {
                         gib = Random.Range(0, textList.Count);
                         list.Add(gib);
                     }
+
                     text.text = "";
+                    
                     for (int i = 0; i < itemList.Count; i++)
                     {
                         if (list.Contains(i))
@@ -153,7 +173,7 @@ public class ShoppingList : MonoBehaviour
                             gibberish.text += "\n";
                         }
                     }
-                    Check = Random.Range(10,25);
+                    Check = Random.Range(10, 25);
                 }
             }
 
