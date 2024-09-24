@@ -30,7 +30,7 @@ public class ShoppingList : MonoBehaviour
     private int itemsDone;
     private void Start()
     {
-        foreach (GameObject item in itemListObj)
+        foreach(GameObject item in itemListObj)
         {
             itemList.Add(item.name);
         }
