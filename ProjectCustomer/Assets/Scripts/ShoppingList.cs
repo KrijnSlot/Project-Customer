@@ -38,7 +38,7 @@ public class ShoppingList : MonoBehaviour
         itemsDone = itemList.Count;
 
         textList = new List<string>(itemList);
-        foreach (string item in textList)
+        foreach (string item in itemList)
         {
             text.text += item;
             text.text += "\n";

@@ -15,6 +15,8 @@ public class ShelfSwitchScript : MonoBehaviour
     [SerializeField]
     List<GameObject> shelfList = new List<GameObject>();
 
+    List<GameObject> listOfShelves = new List<GameObject>();
+
     [SerializeField]
     List<Vector3> CubePosition = new List<Vector3>();
 
@@ -37,8 +39,12 @@ public class ShelfSwitchScript : MonoBehaviour
             {
                 print(row[i].gameObject.transform.GetChild(j).name);
                 if (dontSwitch.Contains(row[i])) continue;
-                shelfList.Add(row[i].gameObject.transform.GetChild(j).gameObject);
+                listOfShelves.Add(row[i].gameObject.transform.GetChild(j).gameObject);
             }
+        }
+        for(int i = 0; i < shelfList.Count; i++)
+        {
+            listOfShelves.Add(shelfList[i]);
         }
 
     }
@@ -51,36 +57,40 @@ public class ShelfSwitchScript : MonoBehaviour
     {
         if (Insanity.insanity > 25 && canSwitch <0)
         {
-            shelfList.Clear();
+            listOfShelves.Clear();
             for (int i = 0; i < row.Count; i++)
             {
                 for (int j = 0; j < row[i].gameObject.transform.childCount; j++)
                 {
                     print(row[i].gameObject.transform.GetChild(j).name);
                     if (dontSwitch.Contains(row[i])) continue;
-                    shelfList.Add(row[i].gameObject.transform.GetChild(j).gameObject);
+                    listOfShelves.Add(row[i].gameObject.transform.GetChild(j).gameObject);
                 }
 
             }
             for (int i = 0; i < shelfList.Count; i++)
             {
-                int rnd = Random.Range(0, shelfList.Count - 1);
-                if (dontSwitch.Contains(shelfList[i])) continue;
+                listOfShelves.Add(shelfList[i]);
+            }
+            for (int i = 0; i < listOfShelves.Count; i++)
+            {
+                int rnd = Random.Range(0, listOfShelves.Count - 1);
+                if (dontSwitch.Contains(listOfShelves[i])) continue;
                 int maxLoop = 0;
-                while (dontSwitch.Contains(shelfList[rnd]) && maxLoop < 20)
+                while (dontSwitch.Contains(listOfShelves[rnd]) && maxLoop < 20)
                 {
-                    rnd = Random.Range(0, shelfList.Count - 1);
+                    rnd = Random.Range(0, listOfShelves.Count - 1);
                     maxLoop++;
                 }
 
-                Vector3 shelfPos = new Vector3(shelfList[i].transform.position.x, shelfList[rnd].transform.position.y, shelfList[i].transform.position.z);
-                Quaternion shelfRot = shelfList[i].transform.rotation;
+                Vector3 shelfPos = new Vector3(listOfShelves[i].transform.position.x, listOfShelves[rnd].transform.position.y, listOfShelves[i].transform.position.z);
+                Quaternion shelfRot = listOfShelves[i].transform.rotation;
 
-                shelfList[i].transform.position = new Vector3(shelfList[rnd].transform.position.x, shelfList[i].transform.position.y, shelfList[rnd].transform.position.z);
-                shelfList[rnd].transform.position = shelfPos;
+                listOfShelves[i].transform.position = new Vector3(listOfShelves[rnd].transform.position.x, listOfShelves[i].transform.position.y, listOfShelves[rnd].transform.position.z);
+                listOfShelves[rnd].transform.position = shelfPos;
 
-                shelfList[i].transform.rotation = shelfList[rnd].transform.rotation;
-                shelfList[rnd].transform.rotation = shelfRot;
+                listOfShelves[i].transform.rotation = listOfShelves[rnd].transform.rotation;
+                listOfShelves[rnd].transform.rotation = shelfRot;
             }
             canSwitch = Random.Range(25,50);
             if(Insanity.insanity > 75) canSwitch = Random.Range(10,20);
