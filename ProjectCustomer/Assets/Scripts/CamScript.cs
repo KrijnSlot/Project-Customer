@@ -7,9 +7,9 @@ public class FirstPersonCam : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Transform playerOrien;
-    [SerializeField] Accel move;
-    [SerializeField] float mouseSenseX = 2f;
-    [SerializeField] float mouseSenseY = 2f;
+    [SerializeField] public Accel move;
+    [SerializeField] public float mouseSenseX = 2f;
+    [SerializeField] public float mouseSenseY = 2f;
     [SerializeField] Transform camHolder1;
     [SerializeField] Transform camHolder2;
     [SerializeField] Transform inBetweenPoint;
@@ -31,8 +31,19 @@ public class FirstPersonCam : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        BasicCamFunctions();
+
+        CamSwitchCheck();
+
+        Rotating();
+
+    }
+
+    void BasicCamFunctions()
+    {
         if (onPlayer && !rotating) transform.position = camHolder1.position;
         if (!onPlayer && !rotating) transform.position = camHolder2.position;
+
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSenseX * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSenseY * Time.deltaTime;
 
@@ -42,12 +53,13 @@ public class FirstPersonCam : MonoBehaviour
 
         if (!move.onCart && onPlayer && !rotating)
             playerOrien.rotation = Quaternion.Euler(0, camRotY, 0);
-        /*else if (!onPlayer && !rotating) playerOrien.LookAt(NPC.transform);*/
 
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
+    }
 
-
-        if (Input.GetKeyDown(KeyCode.Q) && !onPlayer)
+    void CamSwitchCheck()
+    {
+        if (!NPCSript.colliding && !onPlayer)
         {
             move.enabled = true;
             onPlayer = true;
@@ -69,7 +81,8 @@ public class FirstPersonCam : MonoBehaviour
             //make sure pickup tag is attached
             if (hit.transform.gameObject.tag == "NPC")
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                camHolder2 = hit.transform.GetChild(0);
+                if (NPCSript.colliding)
                 {
                     move.enabled = false;
                     onPlayer = false;
@@ -87,10 +100,14 @@ public class FirstPersonCam : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Rotating()
+    {
         if (rotating)
         {
             gameObject.transform.LookAt(inBetweenPoint);
-            rotationTime += Time.deltaTime /2;
+            rotationTime += Time.deltaTime / 2;
             inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime);
             print(inBetweenPoint.rotation.eulerAngles.y);
             print(targetRotation.eulerAngles.y);

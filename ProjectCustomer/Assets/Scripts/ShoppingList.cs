@@ -12,6 +12,9 @@ public class ShoppingList : MonoBehaviour
     public List<GameObject> itemListObj = new List<GameObject>();
     List<string> itemList = new List<string>();
     List<string> textList = new List<string>();
+    List<int> list = new List<int>();
+
+    [SerializeField] TMP_FontAsset gibFont;
 
     [SerializeField] TMP_Text text;
     [SerializeField] TMP_Text gibberish;
@@ -20,6 +23,8 @@ public class ShoppingList : MonoBehaviour
     [SerializeField] int gibberishCount;
 
     [SerializeField] Image crosshair;
+
+    [SerializeField] float Check;
 
     bool checkingList = false;
     private int itemsDone;
@@ -37,10 +42,29 @@ public class ShoppingList : MonoBehaviour
         {
             text.text += item;
             text.text += "\n";
-
-            gibberish.text += item;
-            gibberish.text += "\n";
         }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ListToggle();
+        }
+        Check -= Time.deltaTime;
+        if (Check <= 0)
+        {
+            if (Insanity.insanity > 25)
+            {
+                InsaneTextChange();
+            }
+
+        }
+
+        if (itemsDone == 0)
+        {
+            Debug.Log("List is done");
+        }
+
     }
     public void ItemCheck(string itemName)
     {
@@ -51,56 +75,107 @@ public class ShoppingList : MonoBehaviour
 
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i] == itemName)
+            if (itemList[i].Contains("/s")) continue;
+            if (itemName.Contains(itemList[i]))
             {
                 Debug.Log(itemList[i] + " " + "has been added");
-                itemList[i] = "<s>" + itemName + "</s>";
+                itemList[i] = "<s>" + itemList[i] + "</s>";
                 itemsDone--;
+                Check = 0;
                 break;
             }
         }
 
         textList = new List<string>(itemList);
 
-        foreach (string item in textList)
+        for (int i = 0; i < textList.Count; i++)
         {
-            text.text += item;
-            text.text += "\n";
-
-            gibberish.text += item;
-            gibberish.text += "\n";
-        }
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (!checkingList)
+            if (list.Count == 0)
             {
-                gibberish.enabled = true;
-                text.enabled = true;
-                image.enabled = true;
-                checkingList = true;
-                crosshair.enabled = false;
+                text.text += itemList[i];
+                text.text += "\n";
+
+                gibberish.text += itemList[i];
+                gibberish.text += "\n";
+            }
+            else if (list.Contains(i))
+            {
+                text.text += "";
+                text.text += "\n";
             }
             else
             {
-                gibberish.enabled = false;
-                text.enabled = false;
-                image.enabled = false;
-                checkingList = false;
-                crosshair.enabled = true;
+                text.text += itemList[i];
+                text.text += "\n";
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.U))
+
+
+    void ListToggle()
+    {
+        if (!checkingList)
         {
-            List<int> list = new List<int>();
+            gibberish.enabled = true;
+            text.enabled = true;
+            image.enabled = true;
+            checkingList = true;
+            crosshair.enabled = false;
+        }
+        else
+        {
+            gibberish.enabled = false;
+            text.enabled = false;
+            image.enabled = false;
+            checkingList = false;
+            crosshair.enabled = true;
+        }
+    }
+
+    void InsaneTextChange()
+    {
+        int insanityCheck = 0;
+        int insanityCheck2 = 0;
+        if (Insanity.insanity > 25 && Insanity.insanity < 75)
+        {
+            gibberishCount = 1;
+            insanityCheck = Random.Range(0, 11);
+        }
+        else if (Insanity.insanity > 75)
+        {
+            gibberishCount = 2;
+            insanityCheck2 = Random.Range(0, 11);
+        }
+
+
+        if (insanityCheck == 10 || insanityCheck2 == 10)
+        {
+            list = new List<int>();
+            gibberish.font = gibFont;
+            int gib;
 
             while (list.Count < gibberishCount)
             {
-                int gib = Random.Range(0, textList.Count);
+                gib = Random.Range(0, textList.Count);
                 list.Add(gib);
+            }
+
+            text.text = "";
+
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                if (list.Contains(i))
+                {
+                    Debug.Log(itemList[i] + " " + "has been added");
+                    text.text += "";
+                    text.text += "\n";
+                }
+                else
+                {
+                    text.text += itemList[i];
+                    text.text += "\n";
+                }
             }
 
             gibberish.text = "";
@@ -109,20 +184,17 @@ public class ShoppingList : MonoBehaviour
             {
                 if (list.Contains(i))
                 {
-                    gibberish.text += "dskjd";
+                    gibberish.text += textList[i];
                     gibberish.text += "\n";
                 }
                 else
                 {
-                    gibberish.text += textList[i];
+                    gibberish.text += "";
                     gibberish.text += "\n";
                 }
             }
-        }
-
-        if (itemsDone == 0)
-        {
-            Debug.Log("List is done");
+            Check = Random.Range(10, 25);
         }
     }
+
 }
