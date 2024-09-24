@@ -107,12 +107,12 @@ public class FirstPersonCam : MonoBehaviour
         if (rotating)
         {
             gameObject.transform.LookAt(inBetweenPoint);
-            rotationTime += Time.deltaTime / 2;
-            inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime);
+            rotationTime += Time.deltaTime;
+            inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime* 0.5f);
             print(inBetweenPoint.rotation.eulerAngles.y);
             print(targetRotation.eulerAngles.y);
         }
-        if (rotationTime > 0.5 && rotating)
+        if (rotationTime > 1 && rotating)
         {
             rotating = false;
             gameObject.transform.SetParent(null);

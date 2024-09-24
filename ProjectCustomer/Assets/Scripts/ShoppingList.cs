@@ -30,7 +30,7 @@ public class ShoppingList : MonoBehaviour
     private int itemsDone;
     private void Start()
     {
-        foreach (GameObject item in itemListObj)
+        foreach(GameObject item in itemListObj)
         {
             itemList.Add(item.name);
         }
@@ -38,7 +38,7 @@ public class ShoppingList : MonoBehaviour
         itemsDone = itemList.Count;
 
         textList = new List<string>(itemList);
-        foreach (string item in textList)
+        foreach (string item in itemList)
         {
             text.text += item;
             text.text += "\n";
@@ -110,7 +110,6 @@ public class ShoppingList : MonoBehaviour
             }
         }
     }
-
 
 
     void ListToggle()

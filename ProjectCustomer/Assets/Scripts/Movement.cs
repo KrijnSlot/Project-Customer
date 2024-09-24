@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Accel : MonoBehaviour
 {
@@ -31,6 +28,10 @@ public class Accel : MonoBehaviour
     float exitTime = 1;
     float exitTimer;
     bool exiting;
+
+    [SerializeField] float invertTimer = 10;
+    [SerializeField] bool moveInvert = false;
+    float reverseTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +40,16 @@ public class Accel : MonoBehaviour
 
     private void Inputs()
     {
-        horInput = Input.GetAxisRaw("Horizontal");
-        verInput = Input.GetAxisRaw("Vertical");
+        if (!moveInvert)
+        {
+            horInput = Input.GetAxisRaw("Horizontal");
+            verInput = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            horInput = -Input.GetAxisRaw("Horizontal");
+            verInput = -Input.GetAxisRaw("Vertical");
+        }
     }
 
     // Update is called once per frame
@@ -50,11 +59,13 @@ public class Accel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(gameObject.transform.forward * CartThrust);
+                if (!moveInvert) rb.AddForce(gameObject.transform.forward * CartThrust);
+                else rb.AddForce(gameObject.transform.forward * -CartThrust);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(gameObject.transform.forward * -CartThrust);
+                if (!moveInvert) rb.AddForce(gameObject.transform.forward * -CartThrust);
+                else rb.AddForce(gameObject.transform.forward * CartThrust);
             }
             if (Input.GetKey(KeyCode.A))
             {
@@ -66,6 +77,10 @@ public class Accel : MonoBehaviour
                 yRot += horInput * 0.5f;
                 Cam.camRotY += horInput * 0.5f;
             }
+            if (Input.GetKey(KeyCode.L))
+            {
+                Insanity.insanity += 25;
+            }
         }
         else
         {
@@ -73,7 +88,27 @@ public class Accel : MonoBehaviour
 
             rb.AddForce(directionMoving * NoCartThrust * 10f, ForceMode.Force);
             yRot = Cam.camRotY;
+
+            if (Input.GetKey(KeyCode.L))
+            {
+                Insanity.insanity += 25;
+            }
         }
+
+        if (reverseTimer > 0)
+        {
+            reverseTimer -= Time.deltaTime;
+        }
+        else if (invertTimer < 0)
+        {
+            invertTimer = UnityEngine.Random.Range(10, 20);
+            moveInvert = false;
+        }
+        if (invertTimer > 0 && Insanity.insanity > 75)
+        {
+            invertTimer -= Time.deltaTime;
+        }
+
     }
 
     public void Update()
@@ -89,6 +124,20 @@ public class Accel : MonoBehaviour
         else
         {
             gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
+        }
+
+        if (!moveInvert && Insanity.insanity > 75 && invertTimer <= 0)
+        {
+            /*int random = UnityEngine.Random.Range(0, 2);
+            if(random == 1)
+            {
+                invertTimer = 5;
+            }
+            else*/
+            {
+                moveInvert = true;
+                reverseTimer = UnityEngine.Random.Range(2, 5);
+            }
         }
     }
 
