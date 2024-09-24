@@ -9,12 +9,13 @@ public class PickUpScript : MonoBehaviour
 
     [HideInInspector] public GameObject heldObj;
 
-    public float throwForce = 500f; 
-    public float pickUpRange = 5f; 
+    public float throwForce = 500f;
+    public float pickUpRange = 5f;
     private float rotationSensitivity = 3f;
     private Rigidbody heldObjRb;
     private bool canDrop = true;
     private int LayerNumber;
+    [SerializeField] float dropTimer = 5f;
 
     void Start()
     {
@@ -57,11 +58,21 @@ public class PickUpScript : MonoBehaviour
                 ThrowObject();
             }
 
+            if(dropTimer > 0 && Insanity.insanity >= 75)
+            {
+                dropTimer -= Time.deltaTime;
+            }
+            if (dropTimer <= 0)
+            {
+                StopClipping();
+                DropObject();
+                dropTimer = Random.Range(25, 50);
+            }
         }
     }
     void PickUpObject(GameObject pickUpObj)
     {
-        if (pickUpObj.GetComponent<Rigidbody>()) 
+        if (pickUpObj.GetComponent<Rigidbody>())
         {
             heldObj = pickUpObj;
             heldObjRb = pickUpObj.GetComponent<Rigidbody>();

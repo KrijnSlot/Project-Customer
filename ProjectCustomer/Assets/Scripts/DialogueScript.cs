@@ -16,6 +16,9 @@ public class DialogueScript : MonoBehaviour
 
     private bool positive, neutral, negative;
 
+    [SerializeField] float sanIncrease;
+    [SerializeField] float sanDecrease;
+
     private void Start()
     {
         storage = FindObjectOfType<InMemoryVariableStorage>();
@@ -41,8 +44,10 @@ public class DialogueScript : MonoBehaviour
         if (positive)
         {
             /*Increase the players sanity*/
+            Insanity.insanity -= sanIncrease;
 
             DisableColliding();
+
         }
         if (neutral)
         {
@@ -53,6 +58,7 @@ public class DialogueScript : MonoBehaviour
         if (negative)
         {
             /*Decrease the players sanity*/
+            Insanity.insanity -= sanDecrease;
 
             DisableColliding();
         }

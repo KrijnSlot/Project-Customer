@@ -112,7 +112,6 @@ public class ShoppingList : MonoBehaviour
     }
 
 
-
     void ListToggle()
     {
         if (!checkingList)
