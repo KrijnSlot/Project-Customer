@@ -1,9 +1,16 @@
+using System;
+using System.Data;
 using UnityEngine;
+
 
 public class SyncAudioSources : MonoBehaviour
 {
     public AudioSource[] audioSources;  // Assign your AudioSources here in the Inspector
+    public AudioChorusFilter[] audioChorusFilters;  // Assign your AudioSources here in the Inspector
+    public AudioHighPassFilter[] audioHighPassFilter;  // Assign your AudioSources here in the Inspector
+    public AudioLowPassFilter[] audioLowPassFilter;  // Assign your AudioSources here in the Inspector
     public AudioClip audioClip;         // Your song to sync
+    public AudioReverbZone audioReverbZone;
 
     void Start()
     {
@@ -21,5 +28,30 @@ public class SyncAudioSources : MonoBehaviour
         {
             source.PlayScheduled(startTime);
         }
+    }
+
+    private void Update()
+    {
+        audioReverbZone.reverb = (int)(198 + (Insanity.insanity * 6.02)); 
+
+
+        foreach (AudioChorusFilter filter in audioChorusFilters)
+        {
+            filter.delay = (float)(Insanity.insanity * 0.4);
+            filter.rate = (float)(Insanity.insanity * 0.01);
+            filter.depth = (float)(Insanity.insanity * 0.65);
+        }
+
+        foreach (AudioLowPassFilter filter in audioLowPassFilter)
+        {
+            filter.cutoffFrequency = (int)(1500 - (Insanity.insanity * 11.5));
+        }
+
+        foreach (AudioHighPassFilter filter in audioHighPassFilter)
+        {
+            filter.cutoffFrequency = Insanity.insanity * 4;
+        }
+
+
     }
 }
