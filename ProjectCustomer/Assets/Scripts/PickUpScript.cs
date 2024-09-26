@@ -16,7 +16,6 @@ public class PickUpScript : MonoBehaviour
     private bool canDrop = true;
     private int LayerNumber;
     [SerializeField] float dropTimer = 5f;
-    [SerializeField] private AudioSource grabSound;
 
     void Start()
     {
@@ -37,8 +36,7 @@ public class PickUpScript : MonoBehaviour
                     {
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
-                        grabSound.Play();
-                    }                  
+                    }
                 }
             }
             else
