@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ProjectCustomer/Assets/Art/Prefabs/WineShelf.prefab.meta
 guid: 3ffd28cc9b5fd234096f94fab74947a6
+========
+guid: 4f8bb7ae42a3243409e75534ffb3c448
+>>>>>>>> 988c1ad (shelves):ProjectCustomer/Assets/Art/Prefabs/doors and windows.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
