@@ -11,6 +11,7 @@ using System.Reflection;
 public class DialogueScript : MonoBehaviour
 {
     InMemoryVariableStorage storage;
+    DialogueRunner runner;
 
     public static bool colWait;
 
@@ -22,6 +23,7 @@ public class DialogueScript : MonoBehaviour
     private void Start()
     {
         storage = FindObjectOfType<InMemoryVariableStorage>();
+        runner = FindObjectOfType<DialogueRunner>();
     }
 
     private void Update()
@@ -30,6 +32,11 @@ public class DialogueScript : MonoBehaviour
     }
     void Detection()
     {
+/*        if(NPCSript.colliding && !colWait)
+        {
+            runner.StartDialogue("YarnDialogueScript");
+        }*/
+
         storage.TryGetValue("$positive", out positive);
         storage.TryGetValue("$neutral", out neutral);
         storage.TryGetValue("$negative", out negative);
