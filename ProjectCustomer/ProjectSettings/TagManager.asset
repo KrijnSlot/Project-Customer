@@ -7,7 +7,6 @@ TagManager:
   - Cart
   - canPickUp
   - NPC
-  - Roof
   layers:
   - Default
   - TransparentFX
@@ -18,7 +17,7 @@ TagManager:
   - Cart
   - holdLayer
   - isGround
-  - Roof
+  - 
   - 
   - 
   - 
