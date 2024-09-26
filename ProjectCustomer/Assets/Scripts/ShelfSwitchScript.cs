@@ -25,6 +25,8 @@ public class ShelfSwitchScript : MonoBehaviour
 
     Triggermanager trigger;
 
+    [SerializeField] float Treshhold;
+
 
 
 
