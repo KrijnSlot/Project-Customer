@@ -11,7 +11,6 @@ public class Accel : MonoBehaviour
     [SerializeField] GameObject Shoppingcart;
     [SerializeField] LayerMask Cart;
     [SerializeField] Transform holdPos;
-    [SerializeField] AudioSource footSteps;
     public bool onCart = true;
     bool cartRay;
     Rigidbody rb;
