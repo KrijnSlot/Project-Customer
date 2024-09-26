@@ -23,11 +23,16 @@ public class ShelfSwitchScript : MonoBehaviour
     [SerializeField]
     List<Vector3> NewCubePosition = new List<Vector3>();
 
-    [SerializeField]
-    float canSwitch = 0;
+    Triggermanager trigger;
+
+    [SerializeField] float Treshhold;
+
+
+
 
     private void Awake()
     {
+        trigger = GetComponentInParent<Triggermanager>();
         for (int i = 0; i < shelfList.Count; i++)
         {
             CubePosition.Add(shelfList[i].transform.position);
@@ -48,14 +53,10 @@ public class ShelfSwitchScript : MonoBehaviour
         }
 
     }
-    private void FixedUpdate()
-    {
-        canSwitch -= Time.deltaTime;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Insanity.insanity > 25 && canSwitch <0)
+        if (Insanity.insanity > Treshhold && trigger.canSwitch <0)
         {
             listOfShelves.Clear();
             for (int i = 0; i < row.Count; i++)
@@ -92,8 +93,8 @@ public class ShelfSwitchScript : MonoBehaviour
                 listOfShelves[i].transform.rotation = listOfShelves[rnd].transform.rotation;
                 listOfShelves[rnd].transform.rotation = shelfRot;
             }
-            canSwitch = Random.Range(25,50);
-            if(Insanity.insanity > 75) canSwitch = Random.Range(10,20);
+            trigger.canSwitch = Random.Range(25,50);
+            if(Insanity.insanity > 75) trigger.canSwitch = Random.Range(10,20);
         }
 
     }
