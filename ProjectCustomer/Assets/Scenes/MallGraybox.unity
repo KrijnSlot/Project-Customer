@@ -1103,8 +1103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.7418408, y: 1, z: 1.416997}
+  m_Center: {x: -0.013932335, y: 0, z: 0.2084993}
 --- !u!23 &53706280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3916,6 +3916,7 @@ MonoBehaviour:
   heldObj: {fileID: 0}
   throwForce: 5000
   pickUpRange: 50
+  dropTimer: 5
 --- !u!81 &403520921
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4684,8 +4685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83683b14ef030384badcf2a6b42a6ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  soundPositions: []
+  audioSources: []
+  audioClip: {fileID: 0}
 --- !u!4 &454342794
 Transform:
   m_ObjectHideFlags: 0
@@ -16760,6 +16761,8 @@ MonoBehaviour:
   NoCartThrust: 3
   CartThrust: 15
   Forwardthrust: 0
+  invertTimer: 10
+  moveInvert: 0
 --- !u!54 &1538079089
 Rigidbody:
   m_ObjectHideFlags: 0
