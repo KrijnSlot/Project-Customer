@@ -22,6 +22,7 @@ public class ShelfSwitchScript : MonoBehaviour
 
     [SerializeField]
     List<Vector3> NewCubePosition = new List<Vector3>();
+    public int Treshhold = 35;
 
     [SerializeField]
     float canSwitch = 0;
@@ -55,7 +56,7 @@ public class ShelfSwitchScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Insanity.insanity > 25 && canSwitch <0)
+        if (Insanity.insanity > Treshhold && canSwitch <0)
         {
             listOfShelves.Clear();
             for (int i = 0; i < row.Count; i++)
