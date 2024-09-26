@@ -11,11 +11,17 @@ GameObject:
   - component: {fileID: 3847360790579650501}
   - component: {fileID: 8111394626055266129}
   - component: {fileID: 2769191963374234708}
+<<<<<<< HEAD
   - component: {fileID: 7972661803374064159}
   - component: {fileID: 3170937463585970436}
   m_Layer: 0
   m_Name: OrangeJuice
   m_TagString: canPickUp
+=======
+  m_Layer: 0
+  m_Name: OrangeJuice
+  m_TagString: Untagged
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +69,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 2100000, guid: 52720caa5158ca44e99d23d2fe8d6d78, type: 2}
+=======
+  - {fileID: 2100000, guid: a53ae97690038ba4a9d55cf1f1a4665c, type: 2}
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,6 +95,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD
 --- !u!65 &7972661803374064159
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -133,3 +144,5 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+=======
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
