@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.043137256, g: 0.17254902, b: 0.06666667, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1027,6 +1027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -1397,6 +1401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -1471,6 +1479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -1767,6 +1779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -1989,6 +2005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -2211,6 +2231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -2285,6 +2309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -2359,6 +2387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -2507,6 +2539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -2877,6 +2913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -3099,6 +3139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -3247,6 +3291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -3321,6 +3369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -3469,6 +3521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6
@@ -3913,6 +3969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 4643141394143274817, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fdd8a83efa9a89941ac7540aa944b3de, type: 2}
     - target: {fileID: 6667592815592074670, guid: b8ef318e339b1974f87e5567c4b28d69, type: 3}
       propertyPath: m_LocalScale.x
       value: 2781.6

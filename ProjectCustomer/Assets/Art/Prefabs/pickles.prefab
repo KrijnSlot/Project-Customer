@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6862944784798480905}
   - component: {fileID: 9101035927217986706}
   m_Layer: 0
-  m_Name: Jar 1
+  m_Name: pickles
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
