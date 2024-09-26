@@ -48,17 +48,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7609145667655734672, guid: 9f62370b6e444354f856118bfc356b77, type: 3}
-      propertyPath: m_TagString
-      value: canPickUp
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9f62370b6e444354f856118bfc356b77, type: 3}
       propertyPath: m_Name
       value: carton
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9f62370b6e444354f856118bfc356b77, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1170970068873931921, guid: 9f62370b6e444354f856118bfc356b77, type: 3}
       propertyPath: m_Materials.Array.data[0]
