@@ -11,11 +11,17 @@ GameObject:
   - component: {fileID: 6395076653994201201}
   - component: {fileID: 2204091411645677262}
   - component: {fileID: 3223392779113706265}
+<<<<<<< HEAD
   - component: {fileID: 941401319838762336}
   - component: {fileID: 1304180234525522727}
   m_Layer: 0
   m_Name: AppleJuice
   m_TagString: canPickUp
+=======
+  m_Layer: 0
+  m_Name: AppleJuice
+  m_TagString: Untagged
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +69,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 2100000, guid: cd72ca326dc045549bbadfebcdd8c0dc, type: 2}
+=======
+  - {fileID: 2100000, guid: 16b05a9713c257f46b973e6addbf9faa, type: 2}
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,6 +95,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD
 --- !u!54 &941401319838762336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,3 +144,5 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.013147496, y: 0.044753797, z: 0.020472499}
   m_Center: {x: -0.000005277339, y: -0.002226401, z: 0.000012791249}
+=======
+>>>>>>> 5b027a2 (Added 3D assets as prefabs)
