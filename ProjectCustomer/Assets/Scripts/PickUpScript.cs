@@ -16,6 +16,7 @@ public class PickUpScript : MonoBehaviour
     private bool canDrop = true;
     private int LayerNumber;
     [SerializeField] float dropTimer = 5f;
+    [SerializeField] private AudioSource grab;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class PickUpScript : MonoBehaviour
         {
             if (heldObj == null)
             {
+                
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
@@ -36,7 +38,10 @@ public class PickUpScript : MonoBehaviour
                     {
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
+                        grab.Play();
+                        Debug.Log("grab");
                     }
+                   
                 }
             }
             else
