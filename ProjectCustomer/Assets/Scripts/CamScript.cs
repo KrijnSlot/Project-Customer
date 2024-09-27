@@ -21,6 +21,7 @@ public class FirstPersonCam : MonoBehaviour
     GameObject NPC;
     [SerializeField] bool rotating = false;
     [SerializeField] float rotationTime;
+    public Transform otherCol;
 
     private void Start()
     {
@@ -74,59 +75,56 @@ public class FirstPersonCam : MonoBehaviour
             rotating = true;
         }
 
-        RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, lookRange))
+        if (NPCSript.colliding && onPlayer)
         {
-            //make sure pickup tag is attached
-            if (hit.transform.gameObject.tag == "NPC")
-            {
-                camHolder2 = hit.transform.GetChild(0);
-                if (NPCSript.colliding)
-                {
-                    move.enabled = false;
-                    onPlayer = false;
+            camHolder2 = otherCol.GetChild(0);
+            otherCol = otherCol.GetChild(1);
+            move.enabled = false;
+            onPlayer = false;
 
-                    Vector3 diff = new Vector3((hit.transform.gameObject.transform.position.x + gameObject.transform.position.x) / 2, gameObject.transform.position.y, (hit.transform.gameObject.transform.position.z + gameObject.transform.position.z) / 2);
-                    inBetweenPoint.position = diff;
+            Vector3 diff = new Vector3((otherCol.gameObject.transform.position.x + gameObject.transform.position.x) / 2, gameObject.transform.position.y, (otherCol.gameObject.transform.position.z + gameObject.transform.position.z) / 2);
+            inBetweenPoint.position = diff;
 
-                    gameObject.transform.SetParent(inBetweenPoint);
-                    targetRotation = Quaternion.Euler(0, 180, 0);
+            gameObject.transform.SetParent(inBetweenPoint);
+            targetRotation = Quaternion.Euler(0, 180, 0);
 
-                    rotationTime = 0;
-                    NPC = hit.transform.gameObject;
+            rotationTime = 0;
+            NPC = otherCol.gameObject;
 
-                    rotating = true;
-                }
-            }
+            rotating = true;
         }
-    }
+        if(NPCSript.colliding && !onPlayer)
+        {
+            playerOrien.LookAt(NPC.transform.parent);
+        }
+}
 
-    void Rotating()
+void Rotating()
+{
+    if (rotating)
     {
-        if (rotating)
+        gameObject.transform.LookAt(inBetweenPoint);
+        rotationTime += Time.deltaTime;
+        inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime * 0.5f);
+        print(inBetweenPoint.rotation.eulerAngles.y);
+        print(targetRotation.eulerAngles.y);
+    }
+    if (rotationTime > 1 && rotating)
+    {
+        rotating = false;
+        gameObject.transform.SetParent(null);
+        playerOrien.LookAt(NPC.transform.parent);
+        if (onPlayer)
         {
-            gameObject.transform.LookAt(inBetweenPoint);
-            rotationTime += Time.deltaTime;
-            inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime* 0.5f);
-            print(inBetweenPoint.rotation.eulerAngles.y);
-            print(targetRotation.eulerAngles.y);
+            camRotY = playerOrien.rotation.y;
+            camRotX = playerOrien.rotation.x;
         }
-        if (rotationTime > 1 && rotating)
+        else
         {
-            rotating = false;
-            gameObject.transform.SetParent(null);
-            playerOrien.LookAt(NPC.transform);
-            if (onPlayer)
-            {
-                camRotY = playerOrien.rotation.y;
-                camRotX = playerOrien.rotation.x;
-            }
-            else
-            {
-                camRotY = NPC.transform.rotation.eulerAngles.y;
-                camRotX = NPC.transform.rotation.eulerAngles.x;
-            }
+            camRotY = NPC.transform.rotation.eulerAngles.y;
+            camRotX = NPC.transform.rotation.eulerAngles.x;
         }
     }
+}
 }

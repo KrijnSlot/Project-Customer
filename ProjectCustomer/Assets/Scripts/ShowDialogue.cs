@@ -65,6 +65,7 @@ public class ShowDialogue : MonoBehaviour
         fpc.move.enabled = false;
         fpc.mouseSenseX = 1;
         fpc.mouseSenseY = 1;
+
     }
     public void PlayerUnlock()
     {

@@ -33,6 +33,8 @@ public class NPCSript : MonoBehaviour
     private DialogueScript dialogueScript;
     [SerializeField] private ShowDialogue showDialogue;
 
+    [SerializeField] FirstPersonCam fpc;
+
     private void Start()
     {
         dialogueScript = FindObjectOfType<DialogueScript>();
@@ -88,9 +90,17 @@ public class NPCSript : MonoBehaviour
 
     private void CloseToPlayer()
     {
-        if(!DialogueScript.colWait)
-        colliding = true;
-        Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
+        if (!DialogueScript.colWait)
+        {
+            fpc.otherCol = this.gameObject.transform;
+            colliding = true;
+            gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = false;
+        }
+        else
+        {
+            gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = true;
+        }
+            Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
         // Trigger the dialogue with this NPC using their unique ID and node name
 
         //showDialogue.PlayerLock();

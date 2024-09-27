@@ -1415,7 +1415,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fca14d8bddfa3c46b9422ea4d0b5823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkTo: []
+  walkTo:
+  - {fileID: 1571798428}
+  - {fileID: 1204437852}
+  - {fileID: 1698237525}
+  - {fileID: 605469971}
+  - {fileID: 1292538551}
   agent: {fileID: 826350854}
   player: {fileID: 11085237}
   whatIsGround:
