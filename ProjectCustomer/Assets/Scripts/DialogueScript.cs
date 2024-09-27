@@ -20,23 +20,38 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] float sanIncrease;
     [SerializeField] float sanDecrease;
 
+    // Dictionary to track which NPCs have been talked to
+    private HashSet<string> talkedToNPCs = new HashSet<string>();
+
+    [SerializeField] private NPCSript[] npcList;  // Array to store NPCs
+
     private void Start()
     {
         storage = FindObjectOfType<InMemoryVariableStorage>();
         runner = FindObjectOfType<DialogueRunner>();
     }
 
+    public void StartDialogue(string nodeName, string npcID)
+    {
+        // Check if the NPC has already been talked to
+        if (!talkedToNPCs.Contains(npcID))
+        {
+            runner.StartDialogue(nodeName);
+            talkedToNPCs.Add(npcID);  // Mark the NPC as talked to
+        }
+        else
+        {
+            Debug.Log("You've already talked to this NPC: " + npcID);
+        }
+    }
+
     private void Update()
     {
         Detection();
     }
+
     void Detection()
     {
-/*        if(NPCSript.colliding && !colWait)
-        {
-            runner.StartDialogue("YarnDialogueScript");
-        }*/
-
         storage.TryGetValue("$positive", out positive);
         storage.TryGetValue("$neutral", out neutral);
         storage.TryGetValue("$negative", out negative);
@@ -50,23 +65,16 @@ public class DialogueScript : MonoBehaviour
 
         if (positive)
         {
-            /*Increase the players sanity*/
             Insanity.insanity -= sanIncrease;
-
             DisableColliding();
-
         }
         if (neutral)
         {
-            /*Dont affect the players sanity*/
-
             DisableColliding();
         }
         if (negative)
         {
-            /*Decrease the players sanity*/
             Insanity.insanity -= sanDecrease;
-
             DisableColliding();
         }
 
@@ -75,6 +83,8 @@ public class DialogueScript : MonoBehaviour
 
     void DisableColliding()
     {
+        NPCSript.colliding = false;
+        Debug.Log("colliding");
         colWait = true;
     }
 

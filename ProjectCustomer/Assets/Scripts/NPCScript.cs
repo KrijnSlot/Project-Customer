@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,8 +27,15 @@ public class NPCSript : MonoBehaviour
 
     int walkToInt = 0;
 
+    [SerializeField] private string npcID;  // Unique ID for each NPC
+    [SerializeField] private string dialogueNodeName;  // Node name in the Yarn script
+
+    private DialogueScript dialogueScript;
+    [SerializeField] private ShowDialogue showDialogue;
+
     private void Start()
     {
+        dialogueScript = FindObjectOfType<DialogueScript>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -43,7 +51,7 @@ public class NPCSript : MonoBehaviour
         if (!playerInSightRange) Patroling();
         //if (playerInSightRange && !playerInLookRange) ChasePlayer();
         if (playerInLookRange) CloseToPlayer();
-        if (!playerInLookRange || DialogueScript.colWait) NotColliding();
+        /*if (!playerInLookRange || DialogueScript.colWait) NotColliding();*/
     }
 
     private void Patroling()
@@ -80,27 +88,26 @@ public class NPCSript : MonoBehaviour
 
     private void CloseToPlayer()
     {
-        if (!DialogueScript.colWait)
-        {
-            //Make sure enemy doesn't move
-            agent.SetDestination(transform.position);
+        if(!DialogueScript.colWait)
+        colliding = true;
+        Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
+        // Trigger the dialogue with this NPC using their unique ID and node name
 
-            transform.LookAt(player);
+        //showDialogue.PlayerLock();
 
-            colliding = true;
-        }
-    }
+        dialogueScript.StartDialogue(dialogueNodeName, npcID);
 
-    private void NotColliding()
-    {
-        colliding = false;
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
 
-        Invoke("WaitOff", 10f);
-    }
+        /*        if (!DialogueScript.colWait)
+                {
+                    //Make sure enemy doesn't move
+                    agent.SetDestination(transform.position);
 
-    void WaitOff()
-    {
-        //Debug.Log("wait");
-        DialogueScript.colWait = false;
+                    transform.LookAt(player);
+
+                    colliding = true;
+                }*/
     }
 }

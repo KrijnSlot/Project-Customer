@@ -8,12 +8,12 @@ public class ShowDialogue : MonoBehaviour
     [SerializeField] GameObject dialogueSystem;
     [SerializeField] FirstPersonCam fpc;
 
-        float xSens;
-        float ySens;
+    float xSens;
+    float ySens;
 
     private void Start()
     {
-        dialogueSystem.SetActive(false);
+        //dialogueSystem.SetActive(false);
 
         xSens = fpc.mouseSenseX;
         ySens = fpc.mouseSenseY;
@@ -27,19 +27,37 @@ public class ShowDialogue : MonoBehaviour
     {
         if (NPCSript.colliding)
         {
-            dialogueSystem.SetActive(true);
+            Debug.Log("locked");
+            //dialogueSystem.SetActive(true);
 
             PlayerLock();
         }
         else
         {
-            dialogueSystem.SetActive(false);
+            Debug.Log("unlocked");
+            //dialogueSystem.SetActive(false);
 
             PlayerUnlock();
+            NotColliding();
         }
     }
 
-    void PlayerLock()
+    public void NotColliding()
+    {
+        print("NotCol");
+        NPCSript.colliding = false;
+        Invoke("WaitOff", 20f);
+    }
+
+    void WaitOff()
+    {
+        //Debug.Log("wait");
+        print("waitOff");
+        DialogueScript.colWait = false;
+
+    }
+
+    public void PlayerLock()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -48,8 +66,9 @@ public class ShowDialogue : MonoBehaviour
         fpc.mouseSenseX = 1;
         fpc.mouseSenseY = 1;
     }
-    void PlayerUnlock()
+    public void PlayerUnlock()
     {
+        print("PlayerUnlock");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
