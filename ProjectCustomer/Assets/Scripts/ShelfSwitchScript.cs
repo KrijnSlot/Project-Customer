@@ -22,6 +22,7 @@ public class ShelfSwitchScript : MonoBehaviour
 
     [SerializeField]
     List<Vector3> NewCubePosition = new List<Vector3>();
+
     public int Treshhold = 35;
 
     Triggermanager trigger;

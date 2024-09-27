@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5186948523656049123}
   - component: {fileID: 4888375095981323196}
   m_Layer: 0
-  m_Name: bottle
+  m_Name: red wine
   m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -133,4 +133,4 @@ MonoBehaviour:
   shelfList: []
   CubePosition: []
   NewCubePosition: []
-  canSwitch: 0
+  Treshhold: 25
