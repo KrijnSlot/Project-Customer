@@ -26,6 +26,7 @@ public class ShelfSwitchScript : MonoBehaviour
     public int Treshhold = 35;
 
     Triggermanager trigger;
+    [SerializeField] private AudioSource shelfSound;
 
 
 
@@ -92,6 +93,7 @@ public class ShelfSwitchScript : MonoBehaviour
 
                 listOfShelves[i].transform.rotation = listOfShelves[rnd].transform.rotation;
                 listOfShelves[rnd].transform.rotation = shelfRot;
+                shelfSound.Play();
             }
             trigger.canSwitch = Random.Range(25,50);
             if(Insanity.insanity > 75) trigger.canSwitch = Random.Range(10,20);
