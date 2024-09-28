@@ -39,7 +39,7 @@ public class PickUpScript : MonoBehaviour
                         //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
                         grab.Play();
-                        Debug.Log("grab");
+                       
                     }
                    
                 }
