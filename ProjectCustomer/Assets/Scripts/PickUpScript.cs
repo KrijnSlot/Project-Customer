@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PickUpScript : MonoBehaviour
@@ -17,6 +18,7 @@ public class PickUpScript : MonoBehaviour
     private int LayerNumber;
     [SerializeField] float dropTimer = 5f;
     [SerializeField] private AudioSource grab;
+    [SerializeField] TMP_Text grabIndicator;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class PickUpScript : MonoBehaviour
     }
     void Update()
     {
+        GrabIndicator();
+
         if (Input.GetKeyDown(KeyCode.E)) //change E to whichever key you want to press to pick up
         {
             if (heldObj == null)
@@ -52,6 +56,8 @@ public class PickUpScript : MonoBehaviour
                     DropObject();
                 }
             }
+
+            
         }
         if (heldObj != null) //if player is holding object
         {
@@ -143,4 +149,26 @@ public class PickUpScript : MonoBehaviour
             //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
         }
     }
+
+    void GrabIndicator()
+    {
+        if (heldObj == null)
+        {
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+            {
+                //make sure pickup tag is attached
+                if (hit.transform.gameObject.tag == "canPickUp")
+                {
+                    grabIndicator.enabled = true;
+
+                } else grabIndicator.enabled = false;
+
+            }
+        }else if (heldObj != null)
+            {
+                grabIndicator.enabled = false;
+            }
+        }
 }

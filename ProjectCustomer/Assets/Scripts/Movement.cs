@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,9 @@ public class Accel : MonoBehaviour
     [SerializeField] float invertTimer = 10;
     [SerializeField] bool moveInvert = false;
     float reverseTimer = 0;
+
+    [SerializeField] TMP_Text cartHover;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,12 +150,17 @@ public class Accel : MonoBehaviour
         if (exitTimer > 0) exitTimer -= Time.deltaTime;
         else exiting = false;
 
-        cartRay = Physics.Raycast(Cam.transform.position, Cam.transform.forward, 10f, Cart);
+        cartRay = Physics.Raycast(Cam.transform.position, Cam.transform.forward, 3f, Cart);
+        if (cartRay && !onCart)
+        {
+            cartHover.enabled = true;
+        } else cartHover.enabled = false;
 
-        if (Input.GetKeyUp(KeyCode.F))
+            if (Input.GetKeyUp(KeyCode.F))
         {
             if (cartRay && !onCart)
             {
+                cartHover.enabled = false;
                 Shoppingcart.transform.SetParent(gameObject.transform);
                 Shoppingcart.transform.position = holdPos.position;
                 Shoppingcart.transform.rotation = Quaternion.Euler(gameObject.transform.rotation.x, Cam.camRotY, gameObject.transform.rotation.z);
