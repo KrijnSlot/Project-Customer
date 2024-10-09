@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 7412458866872624733}
   - component: {fileID: 2121341944545412055}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPC_placeArtHere!!!
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
