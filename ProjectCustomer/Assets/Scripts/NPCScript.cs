@@ -107,29 +107,29 @@ public class NPCSript : MonoBehaviour
         {
             gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = true;
         }
-            Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
+        Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
         // Trigger the dialogue with this NPC using their unique ID and node name
+    }
 
-
-    private void NotColliding()
-    {
-        colliding = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        timer += Time.deltaTime;
-
-        if(timer >= waitTime)
+        private void NotColliding()
         {
-            WaitOff();
+            colliding = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            timer += Time.deltaTime;
+
+            if (timer >= waitTime)
+            {
+                WaitOff();
+            }
+
         }
 
+        private void WaitOff()
+        {
+            waiting = false;
+            ui.done = false;
+            timer = 0;
+        }
     }
-
-    void WaitOff()
-    {
-        waiting = false;
-        ui.done = false;
-        timer = 0;
-    }
-}

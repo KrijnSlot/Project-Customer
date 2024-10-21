@@ -14,23 +14,23 @@ public class SyncAudioSources : MonoBehaviour
 
     private void Update()
     {
-        reverbZone.reverb = (int)(198 + (Insanity.insanity * 6.02));
+        reverbZone.reverb = (int)(198 + (UI.insanity * 6.02));
 
         foreach (AudioChorusFilter filter in chorusFilter)
         {
-            filter.depth = (float)(Insanity.insanity * 0.0065);
-            filter.rate = (float)(Insanity.insanity * 0.01);
-            filter.delay = (float)(Insanity.insanity * 0.4);
+            filter.depth = (float)(UI.insanity * 0.0065);
+            filter.rate = (float)(UI.insanity * 0.01);
+            filter.delay = (float)(UI.insanity * 0.4);
         }
 
         foreach (AudioLowPassFilter filter in lowPassFilter)
         {
-            filter.cutoffFrequency = (int)(1500 - (Insanity.insanity * 11.5));
+            filter.cutoffFrequency = (int)(1500 - (UI.insanity * 11.5));
         }
 
         foreach (AudioHighPassFilter filter in highPassFilter)
         {
-            filter.cutoffFrequency = Insanity.insanity * 4;
+            filter.cutoffFrequency = UI.insanity * 4;
         }
     }
     void Start()
