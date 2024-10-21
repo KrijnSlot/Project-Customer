@@ -6,13 +6,22 @@ using UnityEngine.AI;
 
 public class NPCSript : MonoBehaviour
 {
-    [HideInInspector] public static bool colliding = false;
+    [HideInInspector] public bool colliding = false;
+    public bool collidingCheck = false;
 
     [SerializeField] List<GameObject> walkTo = new List<GameObject>();
+
+
+    [SerializeField] UI ui;
 
     public NavMeshAgent agent;
 
     public Transform player;
+
+    public int waitTime;
+    bool waiting = false;
+    float timer = 0;
+
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -30,14 +39,12 @@ public class NPCSript : MonoBehaviour
     [SerializeField] private string npcID;  // Unique ID for each NPC
     [SerializeField] private string dialogueNodeName;  // Node name in the Yarn script
 
-    private DialogueScript dialogueScript;
     [SerializeField] private ShowDialogue showDialogue;
 
     [SerializeField] FirstPersonCam fpc;
 
     private void Start()
     {
-        dialogueScript = FindObjectOfType<DialogueScript>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -45,7 +52,6 @@ public class NPCSript : MonoBehaviour
     private void Update()
     {
         //Debug.Log(DialogueScript.colWait);
-
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInLookRange = Physics.CheckSphere(transform.position, lookRange, whatIsPlayer);
@@ -53,7 +59,7 @@ public class NPCSript : MonoBehaviour
         if (!playerInSightRange) Patroling();
         //if (playerInSightRange && !playerInLookRange) ChasePlayer();
         if (playerInLookRange) CloseToPlayer();
-        /*if (!playerInLookRange || DialogueScript.colWait) NotColliding();*/
+        if (!playerInLookRange || ui.done) NotColliding();
     }
 
     private void Patroling()
@@ -90,34 +96,40 @@ public class NPCSript : MonoBehaviour
 
     private void CloseToPlayer()
     {
-        if (!DialogueScript.colWait)
+        if (!waiting)
         {
+            ui.npcscript = this;
+
             fpc.otherCol = this.gameObject.transform;
             colliding = true;
+            collidingCheck = colliding;
             gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = false;
         }
         else
         {
             gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = true;
         }
-            Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
         // Trigger the dialogue with this NPC using their unique ID and node name
+    }
 
-        //showDialogue.PlayerLock();
+    private void NotColliding()
+    {
+        colliding = false;
 
-        dialogueScript.StartDialogue(dialogueNodeName, npcID);
+        timer += Time.deltaTime;
 
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
 
-        /*        if (!DialogueScript.colWait)
-                {
-                    //Make sure enemy doesn't move
-                    agent.SetDestination(transform.position);
+        if (timer >= waitTime)
+        {
+            WaitOff();
+        }
 
-                    transform.LookAt(player);
+    }
 
-                    colliding = true;
-                }*/
+    private void WaitOff()
+    {
+        waiting = false;
+        ui.done = false;
+        timer = 0;
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class ShowDialogue : MonoBehaviour
 {
-    [SerializeField] GameObject dialogueSystem;
+    /*[SerializeField] GameObject dialogueSystem;
     [SerializeField] FirstPersonCam fpc;
+    public NPCSript npcscript;
 
     float xSens;
     float ySens;
@@ -20,12 +21,12 @@ public class ShowDialogue : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        NPCCollision();
+*//*        NPCCollision();*//*
     }
 
     void NPCCollision()
     {
-        if (NPCSript.colliding)
+        if (npcscript.colliding)
         {
             Debug.Log("locked");
             //dialogueSystem.SetActive(true);
@@ -45,7 +46,7 @@ public class ShowDialogue : MonoBehaviour
     public void NotColliding()
     {
         print("NotCol");
-        NPCSript.colliding = false;
+        npcscript.colliding = false;
         Invoke("WaitOff", 20f);
     }
 
@@ -53,7 +54,6 @@ public class ShowDialogue : MonoBehaviour
     {
         //Debug.Log("wait");
         print("waitOff");
-        DialogueScript.colWait = false;
 
     }
 
@@ -76,5 +76,5 @@ public class ShowDialogue : MonoBehaviour
         fpc.move.enabled = true;
         fpc.mouseSenseX = xSens;
         fpc.mouseSenseY = ySens;
-    }
+    }*/
 }

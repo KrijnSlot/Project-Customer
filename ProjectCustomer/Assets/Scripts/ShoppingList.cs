@@ -53,7 +53,7 @@ public class ShoppingList : MonoBehaviour
         Check -= Time.deltaTime;
         if (Check <= 0)
         {
-            if (Insanity.insanity > 25)
+            if (UI.insanity > 25)
             {
                 InsaneTextChange();
             }
@@ -136,12 +136,12 @@ public class ShoppingList : MonoBehaviour
     {
         int insanityCheck = 0;
         int insanityCheck2 = 0;
-        if (Insanity.insanity > 25 && Insanity.insanity < 75)
+        if (UI.insanity > 25 && UI.insanity < 75)
         {
             gibberishCount = 1;
             insanityCheck = Random.Range(0, 11);
         }
-        else if (Insanity.insanity > 75)
+        else if (UI.insanity > 75)
         {
             gibberishCount = 2;
             insanityCheck2 = Random.Range(0, 11);
