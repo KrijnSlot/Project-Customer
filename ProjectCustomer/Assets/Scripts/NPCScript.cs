@@ -6,9 +6,11 @@ using UnityEngine.AI;
 
 public class NPCSript : MonoBehaviour
 {
-    [HideInInspector] public static bool colliding = false;
+    [HideInInspector] public bool colliding = false;
+    public bool collidingCheck = false;
 
     [SerializeField] List<GameObject> walkTo = new List<GameObject>();
+
 
     [SerializeField] UI ui;
 
@@ -37,14 +39,12 @@ public class NPCSript : MonoBehaviour
     [SerializeField] private string npcID;  // Unique ID for each NPC
     [SerializeField] private string dialogueNodeName;  // Node name in the Yarn script
 
-    private DialogueScript dialogueScript;
     [SerializeField] private ShowDialogue showDialogue;
 
     [SerializeField] FirstPersonCam fpc;
 
     private void Start()
     {
-        dialogueScript = FindObjectOfType<DialogueScript>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -52,7 +52,6 @@ public class NPCSript : MonoBehaviour
     private void Update()
     {
         //Debug.Log(DialogueScript.colWait);
-
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInLookRange = Physics.CheckSphere(transform.position, lookRange, whatIsPlayer);
@@ -99,37 +98,38 @@ public class NPCSript : MonoBehaviour
     {
         if (!waiting)
         {
+            ui.npcscript = this;
+
             fpc.otherCol = this.gameObject.transform;
             colliding = true;
+            collidingCheck = colliding;
             gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = false;
         }
         else
         {
             gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = true;
         }
-        Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
         // Trigger the dialogue with this NPC using their unique ID and node name
     }
 
-        private void NotColliding()
+    private void NotColliding()
+    {
+        colliding = false;
+
+        timer += Time.deltaTime;
+
+
+        if (timer >= waitTime)
         {
-            colliding = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-            timer += Time.deltaTime;
-
-            if (timer >= waitTime)
-            {
-                WaitOff();
-            }
-
+            WaitOff();
         }
 
-        private void WaitOff()
-        {
-            waiting = false;
-            ui.done = false;
-            timer = 0;
-        }
     }
+
+    private void WaitOff()
+    {
+        waiting = false;
+        ui.done = false;
+        timer = 0;
+    }
+}

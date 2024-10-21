@@ -277,9 +277,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6150314249016231038}
+  - {fileID: 211502403264663221}
   - {fileID: 2589459140673612393}
   - {fileID: 5619010603314058230}
-  - {fileID: 211502403264663221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5065646223128757067
@@ -372,8 +372,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  ui: {fileID: 0}
   agent: {fileID: 7412458866872624733}
   player: {fileID: 0}
+  waitTime: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -386,6 +388,10 @@ MonoBehaviour:
   lookRange: 2
   playerInSightRange: 1
   playerInLookRange: 0
+  npcID: 
+  dialogueNodeName: 
+  showDialogue: {fileID: 0}
+  fpc: {fileID: 0}
 --- !u!195 &7412458866872624733
 NavMeshAgent:
   m_ObjectHideFlags: 0

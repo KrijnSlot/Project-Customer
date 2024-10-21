@@ -34,7 +34,7 @@ public class FirstPersonCam : MonoBehaviour
     {
         BasicCamFunctions();
 
-        CamSwitchCheck();
+        /*CamSwitchCheck();*/
 
         Rotating();
 
@@ -58,9 +58,9 @@ public class FirstPersonCam : MonoBehaviour
         transform.rotation = Quaternion.Euler(camRotX, camRotY, 0);
     }
 
-    void CamSwitchCheck()
+    /*void CamSwitchCheck()
     {
-        if (!NPCSript.colliding && !onPlayer)
+        if (!npcscript.colliding && !onPlayer)
         {
             move.enabled = true;
             onPlayer = true;
@@ -76,7 +76,7 @@ public class FirstPersonCam : MonoBehaviour
         }
 
 
-        if (NPCSript.colliding && onPlayer)
+        if (npcscript.colliding && onPlayer)
         {
             camHolder2 = otherCol.GetChild(0);
             otherCol = otherCol.GetChild(1);
@@ -94,37 +94,37 @@ public class FirstPersonCam : MonoBehaviour
 
             rotating = true;
         }
-        if(NPCSript.colliding && !onPlayer)
+        if (npcscript.colliding && !onPlayer)
         {
             playerOrien.LookAt(NPC.transform.parent);
         }
-}
+    }*/
 
-void Rotating()
-{
-    if (rotating)
+    void Rotating()
     {
-        gameObject.transform.LookAt(inBetweenPoint);
-        rotationTime += Time.deltaTime;
-        inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime * 0.5f);
-        print(inBetweenPoint.rotation.eulerAngles.y);
-        print(targetRotation.eulerAngles.y);
-    }
-    if (rotationTime > 1 && rotating)
-    {
-        rotating = false;
-        gameObject.transform.SetParent(null);
-        playerOrien.LookAt(NPC.transform.parent);
-        if (onPlayer)
+        if (rotating)
         {
-            camRotY = playerOrien.rotation.y;
-            camRotX = playerOrien.rotation.x;
+            gameObject.transform.LookAt(inBetweenPoint);
+            rotationTime += Time.deltaTime;
+            inBetweenPoint.rotation = Quaternion.Lerp(inBetweenPoint.rotation, targetRotation, rotationTime * 0.5f);
+            print(inBetweenPoint.rotation.eulerAngles.y);
+            print(targetRotation.eulerAngles.y);
         }
-        else
+        if (rotationTime > 1 && rotating)
         {
-            camRotY = NPC.transform.rotation.eulerAngles.y;
-            camRotX = NPC.transform.rotation.eulerAngles.x;
+            rotating = false;
+            gameObject.transform.SetParent(null);
+            playerOrien.LookAt(NPC.transform.parent);
+            if (onPlayer)
+            {
+                camRotY = playerOrien.rotation.y;
+                camRotX = playerOrien.rotation.x;
+            }
+            else
+            {
+                camRotY = NPC.transform.rotation.eulerAngles.y;
+                camRotX = NPC.transform.rotation.eulerAngles.x;
+            }
         }
     }
-}
 }

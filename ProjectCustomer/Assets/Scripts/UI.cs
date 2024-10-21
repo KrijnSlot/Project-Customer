@@ -4,32 +4,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Drawing;
 
 public class UI : MonoBehaviour
 {
-    public static float insanity;
-    [SerializeField] float insanityCheck;
+    [HideInInspector] public static float insanity;
     [SerializeField] float insanitySpeed;
-    [SerializeField] Slider slider;
-    [SerializeField] string sceneName;
     [SerializeField] int addAlzheimers;
+    [SerializeField] string sceneName;
     // Start is called before the first frame update
+    float insanityCheck;
+    Slider slider;
 
     [SerializeField] GameObject TextHolder;
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Button button3;
 
-    [SerializeField] DialogueText DialogueText;
+    DialogueText DialogueText;
 
-    [SerializeField] TextMeshProUGUI text;
-    [SerializeField] TextMeshProUGUI button1Text;
-    [SerializeField] TextMeshProUGUI button2Text;
-    [SerializeField] TextMeshProUGUI button3Text;
+    TextMeshProUGUI text;
+    TextMeshProUGUI button1Text;
+    TextMeshProUGUI button2Text;
+    TextMeshProUGUI button3Text;
+
+    public NPCSript npcscript;
+    FirstPersonCam fpc;
+
 
     int random;
     bool once;
     public bool done;
+    float xSense;
+    float ySense;
+
 
     GNB gnb1;
     GNB gnb2;
@@ -37,11 +45,28 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+       GettingComponents();
+
+        xSense = fpc.mouseSenseX; 
+        ySense = fpc.mouseSenseY;
+        SetButtons(false);
+
+    }
+
+    void GettingComponents()
+    {
+        slider = transform.GetChild(1).gameObject.GetComponentInChildren<Slider>();
+        fpc = GetComponent<FirstPersonCam>();
+        DialogueText = GetComponent<DialogueText>();
+
+        text = TextHolder.GetComponent<TextMeshProUGUI>();
+        button1Text = button1.GetComponentInChildren<TextMeshProUGUI>();
+        button2Text = button2.GetComponentInChildren<TextMeshProUGUI>();
+        button3Text = button3.GetComponentInChildren<TextMeshProUGUI>();
+
         gnb1 = button1.GetComponent<GNB>();
         gnb2 = button2.GetComponent<GNB>();
         gnb3 = button3.GetComponent<GNB>();
-        SetButtons(false);
-
     }
     void SetButtons(bool check)
     {
@@ -60,6 +85,12 @@ public class UI : MonoBehaviour
             button3Text.enabled = false;
 
             text.enabled = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            fpc.move.enabled = true;
+            fpc.mouseSenseX = xSense;
+            fpc.mouseSenseY = ySense;
+            
         }
         else
         {
@@ -68,29 +99,34 @@ public class UI : MonoBehaviour
             button3.enabled = true;
 
             button1.image.enabled = true;
-            button2.image.enabled = true; 
-            button3.image.enabled = true;  
+            button2.image.enabled = true;
+            button3.image.enabled = true;
 
             button1Text.enabled = true;
             button2Text.enabled = true;
             button3Text.enabled = true;
 
             text.enabled = true;
+            fpc.move.enabled = false;
+            fpc.mouseSenseX = 1;
+            fpc.mouseSenseY = 1;
         }
     }
     // Update is called once per frame
     void Update()
     {
-        if (NPCSript.colliding && !once)
+        if (npcscript != null)
         {
+            if (npcscript.colliding && !once)
+            {
+                print("Dialogue starting");
                 random = Random.Range(1, 4);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 SetText();
                 once = true;
+            }
         }
-
-
 
         slider.value = insanity;
         if (insanity < 100)
@@ -137,7 +173,7 @@ public class UI : MonoBehaviour
 
 
         }
-        
+
     }
 
     public void OnButtonPress(int buttonPressed)
@@ -164,7 +200,7 @@ public class UI : MonoBehaviour
                 insanity += addAlzheimers;
             }
         }
-        else if(buttonPressed == 3)
+        else if (buttonPressed == 3)
         {
             if (gnb3.good)
             {
@@ -175,11 +211,13 @@ public class UI : MonoBehaviour
                 insanity += addAlzheimers;
             }
         }
-        if(insanity < 0)
+        if (insanity < 0)
         {
             insanity = 0;
         }
         SetButtons(false);
+        print("Done");
+        npcscript = null;
         done = true;
         once = false;
     }
