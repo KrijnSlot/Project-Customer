@@ -20,7 +20,7 @@ public class ShowDialogue : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        NPCCollision();
+/*        NPCCollision();*/
     }
 
     void NPCCollision()

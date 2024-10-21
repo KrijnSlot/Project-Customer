@@ -10,9 +10,16 @@ public class NPCSript : MonoBehaviour
 
     [SerializeField] List<GameObject> walkTo = new List<GameObject>();
 
+    [SerializeField] UI ui;
+
     public NavMeshAgent agent;
 
     public Transform player;
+
+    public int waitTime;
+    bool waiting = false;
+    float timer = 0;
+
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -53,7 +60,7 @@ public class NPCSript : MonoBehaviour
         if (!playerInSightRange) Patroling();
         //if (playerInSightRange && !playerInLookRange) ChasePlayer();
         if (playerInLookRange) CloseToPlayer();
-        /*if (!playerInLookRange || DialogueScript.colWait) NotColliding();*/
+        if (!playerInLookRange || ui.done) NotColliding();
     }
 
     private void Patroling()
@@ -90,7 +97,7 @@ public class NPCSript : MonoBehaviour
 
     private void CloseToPlayer()
     {
-        if (!DialogueScript.colWait)
+        if (!waiting)
         {
             fpc.otherCol = this.gameObject.transform;
             colliding = true;
@@ -103,21 +110,26 @@ public class NPCSript : MonoBehaviour
             Debug.Log("dialouge node =" + dialogueNodeName + "npc id " + npcID);
         // Trigger the dialogue with this NPC using their unique ID and node name
 
-        //showDialogue.PlayerLock();
 
-        dialogueScript.StartDialogue(dialogueNodeName, npcID);
+    private void NotColliding()
+    {
+        colliding = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        timer += Time.deltaTime;
 
-        /*        if (!DialogueScript.colWait)
-                {
-                    //Make sure enemy doesn't move
-                    agent.SetDestination(transform.position);
+        if(timer >= waitTime)
+        {
+            WaitOff();
+        }
 
-                    transform.LookAt(player);
+    }
 
-                    colliding = true;
-                }*/
+    void WaitOff()
+    {
+        waiting = false;
+        ui.done = false;
+        timer = 0;
     }
 }

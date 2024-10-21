@@ -69,7 +69,7 @@ public class PickUpScript : MonoBehaviour
                 ThrowObject();
             }
 
-            if(dropTimer > 0 && Insanity.insanity >= 75)
+            if(dropTimer > 0 && UI.insanity >= 75)
             {
                 dropTimer -= Time.deltaTime;
             }

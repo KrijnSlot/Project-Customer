@@ -57,7 +57,7 @@ public class ShelfSwitchScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Insanity.insanity > Treshhold && trigger.canSwitch <0)
+        if (UI.insanity > Treshhold && trigger.canSwitch <0)
         {
             listOfShelves.Clear();
             for (int i = 0; i < row.Count; i++)
@@ -96,7 +96,7 @@ public class ShelfSwitchScript : MonoBehaviour
                 shelfSound.Play();
             }
             trigger.canSwitch = Random.Range(25,50);
-            if(Insanity.insanity > 75) trigger.canSwitch = Random.Range(10,20);
+            if(UI.insanity > 75) trigger.canSwitch = Random.Range(10,20);
         }
 
     }

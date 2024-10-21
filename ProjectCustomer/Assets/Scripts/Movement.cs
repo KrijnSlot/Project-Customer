@@ -83,7 +83,7 @@ public class Accel : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.L))
             {
-                Insanity.insanity += 25;
+                UI.insanity += 25;
             }
         }
         else
@@ -95,7 +95,7 @@ public class Accel : MonoBehaviour
 
             if (Input.GetKey(KeyCode.L))
             {
-                Insanity.insanity += 25;
+                UI.insanity += 25;
             }
         }
 
@@ -108,7 +108,7 @@ public class Accel : MonoBehaviour
             invertTimer = UnityEngine.Random.Range(10, 20);
             moveInvert = false;
         }
-        if (invertTimer > 0 && Insanity.insanity > 75)
+        if (invertTimer > 0 && UI.insanity > 75)
         {
             invertTimer -= Time.deltaTime;
         }
@@ -130,7 +130,7 @@ public class Accel : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Euler(0, yRot, 0);
         }
 
-        if (!moveInvert && Insanity.insanity > 75 && invertTimer <= 0)
+        if (!moveInvert && UI.insanity > 75 && invertTimer <= 0)
         {
             /*int random = UnityEngine.Random.Range(0, 2);
             if(random == 1)

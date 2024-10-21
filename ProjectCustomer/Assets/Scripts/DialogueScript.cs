@@ -65,7 +65,9 @@ public class DialogueScript : MonoBehaviour
 
         if (positive)
         {
-            Insanity.insanity -= sanIncrease;
+            /*Increase the players sanity*/
+            UI.insanity -= sanIncrease;
+
             DisableColliding();
         }
         if (neutral)
@@ -74,7 +76,9 @@ public class DialogueScript : MonoBehaviour
         }
         if (negative)
         {
-            Insanity.insanity -= sanDecrease;
+            /*Decrease the players sanity*/
+            UI.insanity -= sanDecrease;
+
             DisableColliding();
         }
 
