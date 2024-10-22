@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI wasd;
-    [SerializeField] private TextMeshProUGUI openlist;
-    [SerializeField] private TextMeshProUGUI closelist;
+    [SerializeField] private MeshRenderer wasdIcon;
+    [SerializeField] private TextMeshProUGUI openList;
+    [SerializeField] private TextMeshProUGUI closeList;
+    [SerializeField] private MeshRenderer tabIcon;
+
 
     private int tutorialSection = 0;
 
@@ -15,8 +19,10 @@ public class TutorialScript : MonoBehaviour
     void Start()
     {
         wasd.enabled = false;
-        openlist.enabled = false;
-        closelist.enabled = false;
+        openList.enabled = false;
+        closeList.enabled = false;
+        wasdIcon.enabled = false;
+        tabIcon.enabled = false;
     }
 
     // Update is called once per frame
@@ -34,23 +40,25 @@ public class TutorialScript : MonoBehaviour
         if (tutorialSection == 0)
         {
             Time.timeScale = 0.4f;
-            openlist.enabled = true;
+            openList.enabled = true;
+            tabIcon.enabled = true;
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 
-                    openlist.enabled = false;
+                    openList.enabled = false;
                     tutorialSection += 1;
                 
             }
         } 
         else if (tutorialSection == 1)
         {
-            closelist.enabled = true;
+            closeList.enabled = true;
             Debug.Log("in here");
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                    closelist.enabled = false;
+                    tabIcon.enabled = false;
+                    closeList.enabled = false;
                     tutorialSection += 1;
                 
             }
@@ -58,12 +66,14 @@ public class TutorialScript : MonoBehaviour
         else if (tutorialSection == 2)
         {
             wasd.enabled = true;
+            wasdIcon.enabled= true;
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 {
                     Time.timeScale = 1f;
                     wasd.enabled = false;
+                    wasdIcon.enabled = false;
                     tutorialSection += 1;
                 }
             }
