@@ -57,6 +57,11 @@ public class NPCSript : MonoBehaviour
         playerInLookRange = Physics.CheckSphere(transform.position, lookRange, whatIsPlayer);
 
         if (!playerInSightRange) Patroling();
+        else
+        {
+            agent.SetDestination(transform.position);
+            transform.LookAt(player.position);
+        }
         //if (playerInSightRange && !playerInLookRange) ChasePlayer();
         if (playerInLookRange) CloseToPlayer();
         if (!playerInLookRange || ui.done) NotColliding();
@@ -118,6 +123,7 @@ public class NPCSript : MonoBehaviour
 
         timer += Time.deltaTime;
 
+        gameObject.transform.GetChild(1).GetComponent<Animator>().enabled = true;
 
         if (timer >= waitTime)
         {
