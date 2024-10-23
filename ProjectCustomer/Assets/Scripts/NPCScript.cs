@@ -36,9 +36,6 @@ public class NPCSript : MonoBehaviour
 
     int walkToInt = 0;
 
-    [SerializeField] private string npcID;  // Unique ID for each NPC
-    [SerializeField] private string dialogueNodeName;  // Node name in the Yarn script
-
     [SerializeField] private ShowDialogue showDialogue;
 
     [SerializeField] FirstPersonCam fpc;

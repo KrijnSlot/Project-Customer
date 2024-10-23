@@ -88,6 +88,7 @@ public class UI : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             fpc.move.enabled = true;
+            fpc.move.transform.position = fpc.move.transform.position;
             fpc.mouseSenseX = xSense;
             fpc.mouseSenseY = ySense;
             
