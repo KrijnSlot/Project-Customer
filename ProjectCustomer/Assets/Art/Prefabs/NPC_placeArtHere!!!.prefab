@@ -988,15 +988,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5652784
+      value: 1.3992493
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1739589
+      value: 1.049437
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5652784
+      value: 1.3992493
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1041,6 +1041,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
       propertyPath: m_Name
       value: pCube4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24ea6d12ef63c0f4d932b45b843cf6b1, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
