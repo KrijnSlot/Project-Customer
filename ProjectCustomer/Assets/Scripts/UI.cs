@@ -37,6 +37,7 @@ public class UI : MonoBehaviour
     int random;
     bool once;
     bool dialogueOn = false;
+    public bool end = false;
     public bool done;
     float xSense;
     float ySense;
@@ -150,6 +151,10 @@ public class UI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (!atReg)
+                {
+                    end = true;
+                }
                 dialogueOn = false;
                 SetButtons(false);
             }
@@ -159,12 +164,6 @@ public class UI : MonoBehaviour
         if (insanity < 100)
             insanity += Time.deltaTime * insanitySpeed;
         insanityCheck = insanity;
-        if (insanity >= 100)
-        {
-            SceneManager.LoadScene(sceneName);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
     }
 
     private void SetText()

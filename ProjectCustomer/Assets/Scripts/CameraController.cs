@@ -25,16 +25,20 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (ui.npcscript.colliding && !once)
+        if (ui.npcscript != null)
         {
-            CameraChange();
-            once = true;
-        }
-        else if (!ui.npcscript.colliding && once)
-        {
-            print("false"); 
-            once = false;
-            CameraChange();
+
+            if (ui.npcscript.colliding && !once)
+            {
+                CameraChange();
+                once = true;
+            }
+            else if (!ui.npcscript.colliding && once)
+            {
+                print("false");
+                once = false;
+                CameraChange();
+            }
         }
 
         // Toggle cameraSwith when 'T' key is pressed

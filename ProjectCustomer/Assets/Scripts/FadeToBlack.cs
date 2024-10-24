@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFade : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class CameraFade : MonoBehaviour
     public AnimationCurve Curve = new AnimationCurve(new Keyframe(0, 1),
         new Keyframe(0.5f, 0.5f, -1.5f, -1.5f), new Keyframe(1, 0));
     public bool startFadedOut = false;
-
+    [SerializeField] UI ui;
+    [SerializeField] string scene;
 
     private float alpha = 0f;
     private Texture2D texture;
@@ -26,13 +28,16 @@ public class CameraFade : MonoBehaviour
 
     private void Update()
     {
-        if (direction == 0 && Input.GetKeyDown(key))
+        if (direction == 0 && ui.end)
         {
             if (alpha >= 1f) // Fully faded out
             {
                 alpha = 1f;
                 time = 0f;
                 direction = 1;
+                SceneManager.LoadScene(scene);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else // Fully faded in
             {

@@ -1030,7 +1030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60130608}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7101713, z: 0.7040289, w: 0}
+  m_LocalRotation: {x: -0.68662435, y: -0, z: -0, w: 0.7270124}
   m_LocalPosition: {x: -1.6466427, y: 1.3972695, z: -1.0469084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1063,6 +1063,7 @@ MonoBehaviour:
   button3: {fileID: 552739469}
   cashier: {fileID: 1481194588}
   npcscript: {fileID: 0}
+  end: 0
   done: 0
 --- !u!114 &60130615
 MonoBehaviour:
@@ -6190,7 +6191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603841039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7101713, z: 0.7040289, w: 0}
+  m_LocalRotation: {x: -0.68662435, y: -0, z: -0, w: 0.7270124}
   m_LocalPosition: {x: -1.6466427, y: 1.3972695, z: -1.0469084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15314,6 +15315,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.95
       objectReference: {fileID: 0}
+    - target: {fileID: 4117869506364966876, guid: 0c03aef421b1e0e4e9dbbf4c9bfbc173, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4142083068519929704, guid: 0c03aef421b1e0e4e9dbbf4c9bfbc173, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -15931,7 +15936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 104
-  speedScale: 1
+  speedScale: 0.1
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   Curve:
     serializedVersion: 2
@@ -15967,6 +15972,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   startFadedOut: 0
+  ui: {fileID: 60130614}
+  scene: EndScreen
 --- !u!1001 &1550043523
 PrefabInstance:
   m_ObjectHideFlags: 0
