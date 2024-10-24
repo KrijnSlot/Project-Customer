@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60130608}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -9839,7 +9839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a36d9e21006c242befa1b879a6cade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
+  ui: {fileID: 60130614}
   POVCamera: {fileID: 603841041}
   OtherPOVCamera: {fileID: 1816112547}
 --- !u!4 &856383198
@@ -21775,6 +21775,10 @@ PrefabInstance:
       propertyPath: cartHover
       value: 
       objectReference: {fileID: 1384863317}
+    - target: {fileID: 7198927661452971279, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
+      propertyPath: NoCartThrust
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7198927661452971279, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
       propertyPath: Shoppingcart
       value: 
