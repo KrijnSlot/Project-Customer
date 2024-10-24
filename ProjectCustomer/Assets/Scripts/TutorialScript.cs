@@ -12,6 +12,7 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI closeList;
     [SerializeField] private MeshRenderer tabIcon;
     [SerializeField] private FirstPersonCam Player;
+    [SerializeField] private Accel playerMove;
     [SerializeField] private MeshRenderer tutorial1;
     [SerializeField] private MeshRenderer tutorial2;
     [SerializeField] private MeshRenderer tutorial3;
@@ -24,6 +25,7 @@ public class TutorialScript : MonoBehaviour
     void Start()
     {
         Player.enabled = false;
+        playerMove.enabled = false;
         wasd.enabled = false;
         openList.enabled = false;
         closeList.enabled = false;
@@ -114,6 +116,7 @@ public class TutorialScript : MonoBehaviour
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 {
+                    playerMove.enabled = true;
                     Player.enabled = true;
                     wasd.enabled = false;
                     wasdIcon.enabled = false;
