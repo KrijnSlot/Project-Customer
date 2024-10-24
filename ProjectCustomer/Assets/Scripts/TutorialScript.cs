@@ -12,6 +12,10 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI closeList;
     [SerializeField] private MeshRenderer tabIcon;
     [SerializeField] private Accel Player;
+    [SerializeField] private MeshRenderer tutorial1;
+    [SerializeField] private MeshRenderer tutorial2;
+    [SerializeField] private MeshRenderer tutorial3;
+    [SerializeField] private TextMeshProUGUI continueTutorial;
 
 
     private int tutorialSection = 0;
@@ -25,6 +29,10 @@ public class TutorialScript : MonoBehaviour
         closeList.enabled = false;
         wasdIcon.enabled = false;
         tabIcon.enabled = false;
+        tutorial1.enabled = false;
+        tutorial2.enabled = false;
+        tutorial3.enabled = false;
+        continueTutorial.enabled = false;
     }
 
     // Update is called once per frame
@@ -38,8 +46,42 @@ public class TutorialScript : MonoBehaviour
 
     private void TutorialFunction()
     {
-
         if (tutorialSection == 0)
+        {
+            tutorial1.enabled = true;
+            continueTutorial.enabled = true;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                tutorial1.enabled = false;
+                tutorialSection += 1;
+            }
+        }
+
+        if (tutorialSection == 1)
+        {
+            tutorial2.enabled = true;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                tutorial2.enabled = false;
+                tutorialSection += 1;
+            }
+        }
+
+        if (tutorialSection == 2)
+        {
+            tutorial3.enabled = true;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                tutorial3.enabled = false;
+                continueTutorial.enabled = false;
+                tutorialSection += 1;
+            }
+        }
+
+        if (tutorialSection == 3)
         {
             
             openList.enabled = true;
@@ -53,10 +95,9 @@ public class TutorialScript : MonoBehaviour
                 
             }
         } 
-        else if (tutorialSection == 1)
+        else if (tutorialSection == 4)
         {
             closeList.enabled = true;
-            Debug.Log("in here");
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                     tabIcon.enabled = false;
@@ -65,7 +106,7 @@ public class TutorialScript : MonoBehaviour
                 
             }
         }
-        else if (tutorialSection == 2)
+        else if (tutorialSection == 5)
         {
             wasd.enabled = true;
             wasdIcon.enabled= true;
