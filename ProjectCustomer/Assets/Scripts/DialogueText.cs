@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueText : MonoBehaviour
@@ -33,6 +34,22 @@ public class DialogueText : MonoBehaviour
                     Buttontext = "FUCK YOU";
                 else
                     Buttontext = "I WILL BEAT YOU UP";
+                return Buttontext;
+            default:
+                return null;
+        }
+    }
+
+    public string Dialogue(int option)
+    {
+        string Buttontext;
+        switch (option)
+        {
+            case 1:
+                Buttontext = "I feel like I am forgetting something. I should check my list again.";
+                return Buttontext;
+            case 2:
+                Buttontext = "Why can't I find the cereal anywhere. Where is it? Where am I?";
                 return Buttontext;
             default:
                 return null;
