@@ -9,8 +9,11 @@ public class CameraController : MonoBehaviour
 
     CinemachineVirtualCamera activeCamera;
 
+    [SerializeField] UI ui;
     [SerializeField] CinemachineVirtualCamera POVCamera;
     [SerializeField] CinemachineVirtualCamera OtherPOVCamera;
+
+    private bool once = false;
 
     private void Start()
     {
@@ -22,12 +25,24 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        if (ui.npcscript.colliding && !once)
+        {
+            CameraChange();
+            once = true;
+        }
+        else if (!ui.npcscript.colliding && once)
+        {
+            print("false"); 
+            once = false;
+            CameraChange();
+        }
+
         // Toggle cameraSwith when 'T' key is pressed
-        if (Input.GetKeyDown(KeyCode.T))
+/*        if (Input.GetKeyDown(KeyCode.T))
         {
             cameraSwith = !cameraSwith; // Toggles the boolean
             CameraChange(); // Call camera change when the key is pressed
-        }
+        }*/
     }
 
     private void CameraChange()
@@ -56,3 +71,4 @@ public class CameraController : MonoBehaviour
         activeCamera = newCam;
     }
 }
+

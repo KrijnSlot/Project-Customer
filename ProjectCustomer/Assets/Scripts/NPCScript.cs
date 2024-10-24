@@ -48,6 +48,7 @@ public class NPCSript : MonoBehaviour
 
     private void Update()
     {
+        print(waitTime);
         //Debug.Log(DialogueScript.colWait);
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -101,7 +102,7 @@ public class NPCSript : MonoBehaviour
         if (!waiting)
         {
             ui.npcscript = this;
-
+            timer = 0;
             fpc.otherCol = this.gameObject.transform;
             colliding = true;
             collidingCheck = colliding;
