@@ -114,6 +114,11 @@ public class UI : MonoBehaviour
         }
     }
     // Update is called once per frame
+
+    public void SetDialogue(int triggerNumb)
+    {
+
+    }
     void Update()
     {
         if (npcscript != null)
