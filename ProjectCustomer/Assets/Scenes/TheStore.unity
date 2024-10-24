@@ -1030,7 +1030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60130608}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.68662435, y: -0, z: -0, w: 0.7270124}
+  m_LocalRotation: {x: -0, y: 0.7101713, z: 0.7040289, w: 0}
   m_LocalPosition: {x: -1.6466427, y: 1.3972695, z: -1.0469084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6190,7 +6190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603841039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.68662435, y: -0, z: -0, w: 0.7270124}
+  m_LocalRotation: {x: -0, y: 0.7101713, z: 0.7040289, w: 0}
   m_LocalPosition: {x: -1.6466427, y: 1.3972695, z: -1.0469084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15913,6 +15913,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 988282441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1541811893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3485534909913702240, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
+  m_PrefabInstance: {fileID: 7634037533072592123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1541811895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541811893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a408970c5da74942b40f95042188dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 104
+  speedScale: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: -1.5
+      outSlope: -1.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  startFadedOut: 0
 --- !u!1001 &1550043523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21829,7 +21883,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2599117834330949749, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 371582107}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3485534909913702240, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1541811895}
   m_SourcePrefab: {fileID: 100100000, guid: 443e61ccaa566fb489cf172430f62ba9, type: 3}
 --- !u!1001 &8491259040239785089
 PrefabInstance:
