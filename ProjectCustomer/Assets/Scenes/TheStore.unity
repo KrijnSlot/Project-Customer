@@ -5742,6 +5742,7 @@ MonoBehaviour:
   closeList: {fileID: 712669663}
   tabIcon: {fileID: 1684962634}
   Player: {fileID: 60130610}
+  playerMove: {fileID: 1275001683}
   tutorial1: {fileID: 1844110662}
   tutorial2: {fileID: 1939978828}
   tutorial3: {fileID: 1227020071}
@@ -9838,7 +9839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a36d9e21006c242befa1b879a6cade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 60130610}
+  ui: {fileID: 0}
   POVCamera: {fileID: 603841041}
   OtherPOVCamera: {fileID: 1816112547}
 --- !u!4 &856383198
