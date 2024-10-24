@@ -10,13 +10,13 @@ using System.CodeDom.Compiler;
 public class ShoppingList : MonoBehaviour
 {
     public List<GameObject> itemListObj = new List<GameObject>();
-    List<string> itemList = new List<string>();
+    public List<string> itemList = new List<string>();
     List<string> textList = new List<string>();
     List<int> list = new List<int>();
 
     [SerializeField] TMP_FontAsset gibFont;
 
-    [SerializeField] TMP_Text text;
+    public TMP_Text text;
     [SerializeField] TMP_Text gibberish;
     [SerializeField] Image image;
 
@@ -27,7 +27,7 @@ public class ShoppingList : MonoBehaviour
     [SerializeField] float Check;
 
     bool checkingList = false;
-    private int itemsDone;
+    public int itemsDone;
     private void Start()
     {
         foreach(GameObject item in itemListObj)
@@ -57,7 +57,6 @@ public class ShoppingList : MonoBehaviour
             {
                 InsaneTextChange();
             }
-
         }
 
         if (itemsDone == 0)

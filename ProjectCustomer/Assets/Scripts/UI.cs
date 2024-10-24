@@ -21,6 +21,8 @@ public class UI : MonoBehaviour
     [SerializeField] Button button2;
     [SerializeField] Button button3;
 
+    [SerializeField] Transform cashier;
+
     DialogueText DialogueText;
 
     TextMeshProUGUI text;
@@ -34,9 +36,11 @@ public class UI : MonoBehaviour
 
     int random;
     bool once;
+    bool dialogueOn = false;
     public bool done;
     float xSense;
     float ySense;
+    bool atReg;
 
 
     GNB gnb1;
@@ -114,6 +118,17 @@ public class UI : MonoBehaviour
         }
     }
     // Update is called once per frame
+
+    public void SetDialogue(int triggerNumb, bool AtRegister)
+    {
+        atReg = AtRegister;
+        text.enabled = true;
+        button1.image.enabled = true;
+        button1Text.enabled = true;
+        text.text = DialogueText.Dialogue(triggerNumb);
+        button1Text.text = "Press Space";
+        dialogueOn = true;
+    }
     void Update()
     {
         if (npcscript != null)
@@ -126,6 +141,17 @@ public class UI : MonoBehaviour
                 Cursor.visible = true;
                 SetText();
                 once = true;
+            }
+        }
+        if(dialogueOn)
+        {
+            if(atReg)
+            transform.LookAt(cashier);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dialogueOn = false;
+                SetButtons(false);
             }
         }
 
