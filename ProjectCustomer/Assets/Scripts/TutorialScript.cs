@@ -11,7 +11,7 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI openList;
     [SerializeField] private TextMeshProUGUI closeList;
     [SerializeField] private MeshRenderer tabIcon;
-    [SerializeField] private Accel Player;
+    [SerializeField] private FirstPersonCam Player;
     [SerializeField] private MeshRenderer tutorial1;
     [SerializeField] private MeshRenderer tutorial2;
     [SerializeField] private MeshRenderer tutorial3;
@@ -58,7 +58,7 @@ public class TutorialScript : MonoBehaviour
             }
         }
 
-        if (tutorialSection == 1)
+        else if (tutorialSection == 1)
         {
             tutorial2.enabled = true;
 
@@ -69,7 +69,7 @@ public class TutorialScript : MonoBehaviour
             }
         }
 
-        if (tutorialSection == 2)
+        else if (tutorialSection == 2)
         {
             tutorial3.enabled = true;
 
